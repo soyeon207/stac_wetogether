@@ -24,9 +24,9 @@ public class FirebaseJoin {
     @Exclude
     public Map<String,Object> toMap() {
         HashMap<String,Object> result = new HashMap<>();
-        result.put("pwd",pwd);
-        result.put("name",name);
-        result.put("id",id);
+        result.put("pwd",pwd); //pwd : pwd
+        result.put("name",name); //name : name
+        result.put("id",id); //id : id 입력
         return result;
     }
 }
