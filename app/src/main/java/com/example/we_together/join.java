@@ -3,10 +3,13 @@ package com.example.we_together;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.view.View.OnClickListener;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -23,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class join extends AppCompatActivity implements View.OnClickListener{
+public class join extends AppCompatActivity implements OnClickListener{
 
     private DatabaseReference mPostReference; //Firebse에서 데이터를 읽거나 쓰기 위해서 필요한 인스턴스
 
@@ -42,7 +45,11 @@ public class join extends AppCompatActivity implements View.OnClickListener{
         edit_id = findViewById(R.id.id);
         edit_pwd = findViewById(R.id.password);
         edit_name = findViewById(R.id.name);
+        join_btn = findViewById(R.id.join_btn);
 
+        join_btn.setOnClickListener(this); //join_btn을 클릭하면 밑에 있는 onclick 함수가 실행되게 된다
+
+        getFirebaseId();
     }
 
     public void postFirebaseDatabase(boolean add){
@@ -68,9 +75,9 @@ public class join extends AppCompatActivity implements View.OnClickListener{
                 //데이터가 없으면 스냅샷은 exists() 호출 시 false를 반환하고, getValue() 호출 시 null을 반환
                 arrayData.clear();
                 arrayIndex.clear();
-
+                Log.e("name","getFirebaseId");
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-
+                    Log.e("id",postSnapshot.getValue().toString());
                 }
             }
 
@@ -83,15 +90,15 @@ public class join extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View v){
+
         switch (v.getId()){
             case R.id.join_btn:
                 id = edit_id.getText().toString();
                 name = edit_name.getText().toString();
                 pwd = edit_pwd.getText().toString();
 
+                getFirebaseId();
                 postFirebaseDatabase(true);
-
-
                 break;
         }
     }
