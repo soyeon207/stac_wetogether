@@ -36,6 +36,8 @@ public class join extends AppCompatActivity implements OnClickListener{
     Button join_btn;
     String id,name,pwd;
 
+    static ArrayList<String> IdList = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,23 +67,26 @@ public class join extends AppCompatActivity implements OnClickListener{
         mPostReference.updateChildren(childUpdates);
     }
 
-    public void FirebaseIdCall() { //아이디 중복 처리를 하기 위해서 파이어베이스에서 아이디를 불러오는 함수
+    //이미 있는 아이딘지 확인 하는 함수
+    public boolean IsExistID() {
+        boolean IsExist = IdList.contains(id);
+        return IsExist;
+    }
+
+    //아이디 중복 처리를 하기 위해서 파이어베이스에서 아이디를 불러오는 함수
+    public void FirebaseIdCall() {
         FirebaseDatabase.getInstance().getReference().child("users").addChildEventListener(new ChildEventListener() {
-            @Override
+
+            @Override // 앱에 들어갔을 때 모든 아이디를 불러옴 & 값이 추가되면 그 값을 불러옴
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                // 앱에 들어갔을 때 모든 아이디를 불러옴 & 값이 추가되면 그 값을 불러옴
-                Log.e("MainActivity", "ChildEventListener - onChildAdded : " + dataSnapshot.getKey());
+                IdList.add(dataSnapshot.getKey());
             }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                // firebase 값이 바뀌면 그 값을 불러옴
-            }
+            @Override // firebase 값이 바뀌면 그 값을 불러옴
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                // firebase 값이 삭제되면 그 값을 불러옴
-            }
+            @Override // firebase 값이 삭제되면 그 값을 불러옴
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) { }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
@@ -91,7 +96,22 @@ public class join extends AppCompatActivity implements OnClickListener{
         });
     }
 
-    @Override
+    //중복되는 아이디인지 확인 하고 중복되지 않으면 Firebase에 값을 넣는 함수
+    public void IsExistCheck() {
+        if(IsExistID())  //중복되는 아이디가 존재할 경우
+            Toast.makeText(join.this,"이미 존재 하는 아이디 입니다. 다른 아이디로 설정해주세요",Toast.LENGTH_LONG).show();
+        else  //중복되는 아이디가 존재하지 않을 경우
+            postFirebaseDatabase(true);
+        edit_id.requestFocus(); //중복되는 아이디가 존재하기 때문에 아이디를 다시 입력하라는 의미에서 아이디에 포커싱을 해줌.
+    }
+
+    //edittext가 빈칸일 경우 해당 edittext에 error를 표시해주고 포커싱을 해줌. 반복적으로 방송되기에 함수화 함.
+    public void BlankChk(EditText a) {
+        a.setError("빈칸입니다");
+        a.requestFocus();
+    }
+
+    @Override //버튼이 클릭되었을 때 호출되는 함수
     public void onClick(View v){
 
         switch (v.getId()){
@@ -100,7 +120,11 @@ public class join extends AppCompatActivity implements OnClickListener{
                 name = edit_name.getText().toString();
                 pwd = edit_pwd.getText().toString();
 
-                postFirebaseDatabase(true);
+                if(id.isEmpty()) BlankChk(edit_id);
+                else if(pwd.isEmpty()) BlankChk(edit_pwd);
+                else if(name.isEmpty()) BlankChk(edit_name);
+                else IsExistCheck();
+
                 break;
 
         }
