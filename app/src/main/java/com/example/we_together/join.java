@@ -1,6 +1,7 @@
 package com.example.we_together;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.view.View.OnClickListener;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,9 +36,6 @@ public class join extends AppCompatActivity implements OnClickListener{
     Button join_btn;
     String id,name,pwd;
 
-    static ArrayList<String> arrayIndex = new ArrayList<String>();
-    static ArrayList<String> arrayData = new ArrayList<String>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +48,7 @@ public class join extends AppCompatActivity implements OnClickListener{
 
         join_btn.setOnClickListener(this); //join_btn을 클릭하면 밑에 있는 onclick 함수가 실행되게 된다
 
-        getFirebaseId();
+        FirebaseIdCall();
     }
 
     public void postFirebaseDatabase(boolean add){
@@ -66,26 +65,30 @@ public class join extends AppCompatActivity implements OnClickListener{
         mPostReference.updateChildren(childUpdates);
     }
 
-    public void getFirebaseId() {
-        ValueEventListener postListner = new ValueEventListener() { //경로의 전체 내용에 대한 변경 사항을 읽고 수신 대기
+    public void FirebaseIdCall() { //아이디 중복 처리를 하기 위해서 파이어베이스에서 아이디를 불러오는 함수
+        FirebaseDatabase.getInstance().getReference().child("users").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //이벤트 발생 시점을 기준으로 지정된 경로에 있는 내용의 정적 스냅샷을 읽을 수 있다
-                //이 메소드는 리스너가 연결될 떄 한 번 호출된 후 하위를 포함한 데이터가 변경될 때마다 다시 호출됨.
-                //데이터가 없으면 스냅샷은 exists() 호출 시 false를 반환하고, getValue() 호출 시 null을 반환
-                arrayData.clear();
-                arrayIndex.clear();
-                Log.e("name","getFirebaseId");
-                for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    Log.e("id",postSnapshot.getValue().toString());
-                }
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                // 앱에 들어갔을 때 모든 아이디를 불러옴 & 값이 추가되면 그 값을 불러옴
+                Log.e("MainActivity", "ChildEventListener - onChildAdded : " + dataSnapshot.getKey());
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) { //읽기가 취소된 경우에 호출 되는 메소드
-
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                // firebase 값이 바뀌면 그 값을 불러옴
             }
-        };
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                // firebase 값이 삭제되면 그 값을 불러옴
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) { }
+        });
     }
 
     @Override
@@ -97,9 +100,9 @@ public class join extends AppCompatActivity implements OnClickListener{
                 name = edit_name.getText().toString();
                 pwd = edit_pwd.getText().toString();
 
-                getFirebaseId();
                 postFirebaseDatabase(true);
                 break;
+
         }
     }
 }

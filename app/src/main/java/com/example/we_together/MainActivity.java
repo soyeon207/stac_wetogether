@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.push().setValue("test");
+                databaseReference.child("users").push().setValue("test");
             }
         });
 
