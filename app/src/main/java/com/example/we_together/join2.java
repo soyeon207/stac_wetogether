@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
     private Button join_btn;
     private FirebaseAuth firebaseAuth;
     private String email,pwd,name;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
         edit_pwd = findViewById(R.id.pwd);
         edit_name = findViewById(R.id.name);
         join_btn = findViewById(R.id.join);
+        progressBar = findViewById(R.id.pb);
 
         join_btn.setOnClickListener(this);
     }
@@ -64,21 +67,28 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
         }
         else { // 모든 EditText가 정상적으로 입력 된 경우
 
+            progressBar.setVisibility(View.VISIBLE);
             firebaseAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     try{
                         if(task.isSuccessful()){
                             finish();
+                            progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(getApplication(),Test.class));
+
                         }
                     }catch (Exception e){
-                        Toast.makeText(join2.this,"등록 에서",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(join2.this,"이미 등록되어 있는 이메일입니다. ",Toast.LENGTH_SHORT).show();
+                        edit_email.requestFocus();
+                        edit_email.setError("이메일 형식이 ");
                         Log.e("a",e.getMessage());
                     }
 
                 }
             });
+
+
         }
 
 
