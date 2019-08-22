@@ -16,7 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     Button join,login;
 
@@ -31,21 +31,21 @@ public class MainActivity extends AppCompatActivity {
         join = findViewById(R.id.join);
         login = findViewById(R.id.login);
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                databaseReference.child("users").push().setValue("test");
-            }
-        });
+        join.setOnClickListener(this);
+        login.setOnClickListener(this);
 
-        join.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.login:
+
+                break;
+            case R.id.join:
                 Intent intent = new Intent(MainActivity.this,join.class);
                 startActivity(intent);
-            }
-        });
-
-
+                break;
+        }
     }
 }
