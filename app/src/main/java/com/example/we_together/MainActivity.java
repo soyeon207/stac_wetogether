@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 break;
             case R.id.join:
-                Intent intent = new Intent(MainActivity.this,join.class);
+                Intent intent = new Intent(MainActivity.this,join2.class);
                 startActivity(intent);
                 break;
         }
