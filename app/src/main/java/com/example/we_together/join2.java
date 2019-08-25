@@ -78,11 +78,12 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
                             startActivity(new Intent(getApplication(),Test.class));
 
                         }
+                        else {
+                            Toast.makeText(join2.this,"이미 등록되어 있는 이메일입니다. ",Toast.LENGTH_SHORT).show();
+                            edit_email.requestFocus();
+                        }
                     }catch (Exception e){
-                        Toast.makeText(join2.this,"이미 등록되어 있는 이메일입니다. ",Toast.LENGTH_SHORT).show();
-                        edit_email.requestFocus();
-                        edit_email.setError("이메일 형식이 ");
-                        Log.e("a",e.getMessage());
+                        Log.e("error","에러 발생");
                     }
 
                 }
