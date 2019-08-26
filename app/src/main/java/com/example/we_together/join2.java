@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class join2 extends AppCompatActivity implements View.OnClickListener{
 
@@ -26,6 +28,9 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
     private FirebaseAuth firebaseAuth;
     private String email,pwd,name;
     ProgressBar progressBar;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,23 +81,20 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
                             finish();
                             progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(getApplication(),Test.class));
-
+                            databaseReference.child("user").child(firebaseAuth.getUid().toString()).push().setValue(name);
                         }
                         else {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            edit_email.setError("이미 등록되어 있는 이메일입니다.");
                             Toast.makeText(join2.this,"이미 등록되어 있는 이메일입니다. ",Toast.LENGTH_SHORT).show();
                             edit_email.requestFocus();
                         }
                     }catch (Exception e){
                         Log.e("error","에러 발생");
                     }
-
                 }
             });
-
-
         }
-
-
     }
 
     @Override
