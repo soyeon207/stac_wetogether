@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         if(firebaseAuth.getCurrentUser()!=null){
             Intent intent = new Intent(Login.this,MainActivity.class);
             startActivity(intent);
+            finish();
         }
     }
 
@@ -66,6 +67,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                         if(task.isSuccessful()) {
                             Intent intent = new Intent(Login.this,MainActivity.class);
                             startActivity(intent);
+                            finish();
                         }else {
                             Toast.makeText(Login.this,"아이디나 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show();
                         }
