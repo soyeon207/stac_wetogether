@@ -21,6 +21,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity{
+    private final long FINISH_INTERVAL_TIME = 2000;
+    private long backPressedTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,5 +31,21 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
 
-}
+        if (0 <= intervalTime && FINISH_INTERVAL_TIME >= intervalTime)
+        {
+            super.onBackPressed();
+        }
+        else
+        {
+            backPressedTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번 더 뒤로가기 누르면 꺼버린다.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+ }
+

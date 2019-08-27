@@ -11,11 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Login">
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Login">
+
         </activity>
         <activity android:name=".Test" />
         <activity
@@ -23,9 +27,7 @@
             android:label="@string/title_activity_join2"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".join" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
