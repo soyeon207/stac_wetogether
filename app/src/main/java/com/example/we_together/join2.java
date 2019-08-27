@@ -81,7 +81,7 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
                             finish();
                             progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(getApplication(),Test.class));
-                            databaseReference.child("user").child(firebaseAuth.getUid().toString()).push().setValue(name);
+                            databaseReference.child("users").child(firebaseAuth.getUid()).push().setValue(name);
                         }
                         else {
                             progressBar.setVisibility(View.INVISIBLE);
