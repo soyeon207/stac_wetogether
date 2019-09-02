@@ -59,10 +59,17 @@ public class MakeRoom extends AppCompatActivity implements View.OnClickListener{
                 Map<String, Object> childUpdates = new HashMap<>();
                 Map<String, Object> postValues = null;
 
-                FirebaseName post = new FirebaseName(room);
+                FirebaseName post = new FirebaseName(room," ");
                 postValues = post.toMap();
 
                 childUpdates.put("/room/" + invitecode, postValues);
+                databaseReference.updateChildren(childUpdates);
+
+
+                FirebaseName post2 = new FirebaseName(room,invitecode);
+                postValues = post2.toMap();
+
+                childUpdates.put("/name/", postValues);
                 databaseReference.updateChildren(childUpdates);
 
                 break;

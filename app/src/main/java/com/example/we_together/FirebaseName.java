@@ -10,17 +10,22 @@ import java.util.Map;
 public class FirebaseName {
 
     public String name; //아이디
+    public String check;
 
     public FirebaseName() {}
 
-    public FirebaseName(String name){
+    public FirebaseName(String name,String chk){
+        if(chk.equals(" "))
+            check = "name";
+        else
+            check=chk;
         this.name = name;
     }
 
     @Exclude
     public Map<String,Object> toMap() {
         HashMap<String,Object> result = new HashMap<>();
-        result.put("name",name); //name : name
+        result.put(check,name); //name : name
         return result;
     }
 
