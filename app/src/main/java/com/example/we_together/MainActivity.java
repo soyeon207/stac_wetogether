@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         firebaseAuth = firebaseAuth.getInstance();
         logout_btn = findViewById(R.id.logout);
         logout_btn.setOnClickListener(this);

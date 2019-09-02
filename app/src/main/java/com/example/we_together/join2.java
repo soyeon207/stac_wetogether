@@ -80,8 +80,8 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
                         if(task.isSuccessful()){ // 넣는 것이 성공했다면
                             finish(); // 이 창을 닫고
                             progressBar.setVisibility(View.INVISIBLE);
-                                startActivity(new Intent(getApplication(),Room.class));
-                            databaseReference.child("users").child(firebaseAuth.getUid()).push().setValue(name);
+                            startActivity(new Intent(getApplication(),Room.class));
+                            databaseReference.child("users").child(firebaseAuth.getUid()).child("name").push().setValue(name);
                         }
                         else {
                             progressBar.setVisibility(View.INVISIBLE);
