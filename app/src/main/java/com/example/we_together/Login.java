@@ -44,6 +44,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         join.setOnClickListener(this);
         login.setOnClickListener(this);
 
+        firebaseAuth = firebaseAuth.getInstance();
 
     }
 
@@ -59,13 +60,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 firebaseAuth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            Intent intent = new Intent(Login.this,Room.class);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            Toast.makeText(Login.this,"아이디나 비밀번호를 확인해주세요",Toast.LENGTH_LONG).show();
-                        }
+                            if (task.isSuccessful()) {
+                                Intent intent = new Intent(Login.this, Room.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Toast.makeText(Login.this, "아이디나 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show();
+                            }
+
                     }
                 });
 
