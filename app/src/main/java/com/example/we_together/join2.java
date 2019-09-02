@@ -72,15 +72,15 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
         }
         else { // 모든 EditText가 정상적으로 입력 된 경우
 
-            progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE); // progressBar를 보여준다
             firebaseAuth.createUserWithEmailAndPassword(email,pwd).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
+                public void onComplete(@NonNull Task<AuthResult> task) { // firebase 인증에 email과 pwd를 넣어준다.
                     try{
-                        if(task.isSuccessful()){
-                            finish();
+                        if(task.isSuccessful()){ // 넣는 것이 성공했다면
+                            finish(); // 이 창을 닫고
                             progressBar.setVisibility(View.INVISIBLE);
-                                startActivity(new Intent(getApplication(),MainActivity.class));
+                                startActivity(new Intent(getApplication(),Room.class));
                             databaseReference.child("users").child(firebaseAuth.getUid()).push().setValue(name);
                         }
                         else {
