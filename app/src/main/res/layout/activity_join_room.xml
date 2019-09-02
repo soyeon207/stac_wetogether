@@ -7,4 +7,17 @@
     android:orientation="vertical"
     tools:context=".JoinRoom">
 
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="초대코드"
+        android:id="@+id/code"
+        />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="초대코드 입력"
+        />
 </LinearLayout>

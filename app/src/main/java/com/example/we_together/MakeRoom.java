@@ -49,7 +49,7 @@ public class MakeRoom extends AppCompatActivity implements View.OnClickListener{
                 room = edit_roomname.getText().toString();
                 invitecode = firebaseAuth.getCurrentUser().getUid().substring(0,6);
 
-                SharedPreferences preferences = getSharedPreferences("CODE",MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.putString("invitecode",invitecode);
                 editor.putString("room",room);

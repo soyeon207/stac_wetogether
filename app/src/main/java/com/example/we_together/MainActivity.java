@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,6 +59,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.logout:
+
+                SharedPreferences pref2 = getSharedPreferences("SAVE", MODE_PRIVATE);
+                SharedPreferences.Editor editor2 = pref2.edit();
+                editor2.clear();
+                editor2.commit(); // SharedPreferences 의 데이터 모두 삭제
+
                 firebaseAuth.signOut();
                 finish();
                 startActivity(new Intent(this,Login.class));

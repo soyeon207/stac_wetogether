@@ -1,6 +1,7 @@
 package com.example.we_together;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -18,10 +19,17 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         firebaseAuth = firebaseAuth.getInstance();
-        if(firebaseAuth.getCurrentUser()!=null){ // 만약 로그인을 했다면
+        if(firebaseAuth.getCurrentUser()!=null){ // 만약 로그인을 했고
 
-            Intent intent = new Intent(Splash.this,MainActivity.class); //메인 화면으로 넘겨주고
-            startActivity(intent);
+            SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+            String invitecode = preferences.getString("invitecode","");
+
+            if(invitecode.isEmpty())  // 방도 들어가거나 만들었다면
+                startActivity(new Intent(Splash.this,Room.class));
+
+            else // 방을 만들지 않았다면
+                startActivity(new Intent(Splash.this,MainActivity.class));
+
             finish();
         }
 
