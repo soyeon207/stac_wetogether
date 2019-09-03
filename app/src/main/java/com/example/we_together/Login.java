@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,8 +56,18 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 email = edit_email.getText().toString().trim();
                 pwd = edit_pwd.getText().toString().trim();
 
-                Log.e("email",email);
-                Log.e("pwd",pwd);
+                if(pwd.isEmpty()) {
+                   edit_pwd.requestFocus();
+                   edit_pwd.setError("비밀번호를 입력해주세요");
+                }
+                else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) { // 이메일 형식이 옳지 않은 경우
+                    edit_email.requestFocus();
+                    edit_email.setError("이메일 형식이 올바르지 않습니다");
+                }
+
+                else {
+
+
                 firebaseAuth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -67,10 +78,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             } else {
                                 Toast.makeText(Login.this, "아이디나 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show();
                             }
-
                     }
                 });
 
+                }
                 break;
             case R.id.join:
                 Intent intent = new Intent(Login.this,join2.class);
