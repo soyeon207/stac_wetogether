@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,11 +23,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private final long FINISH_INTERVAL_TIME = 2000;
     private long backPressedTime = 0;
     FirebaseAuth firebaseAuth;
     Button logout_btn;
+
+    TextView text_name,text_code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         firebaseAuth = firebaseAuth.getInstance();
         logout_btn = findViewById(R.id.logout);
+
+        text_name = findViewById(R.id.room_name);
+        text_code = findViewById(R.id.room_code);
+
+        SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+        text_code.setText("초대코드 " +preferences.getString("invitecode",""));
+        text_name.setText("방 이름 " +preferences.getString("room",""));
+
         logout_btn.setOnClickListener(this);
         Log.e("uid",firebaseAuth.getCurrentUser().getUid());
 
