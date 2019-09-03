@@ -1,5 +1,6 @@
 package com.example.we_together;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,6 +73,8 @@ public class MakeRoom extends AppCompatActivity implements View.OnClickListener{
                 childUpdates.put("/name/", postValues);
                 databaseReference.updateChildren(childUpdates);
 
+                startActivity(new Intent(MakeRoom.this,MainActivity.class));
+                finish();
                 break;
         }
     }

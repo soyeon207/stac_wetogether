@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,7 +56,7 @@ public class JoinRoom extends AppCompatActivity {
                             }
                         }
 
-                        Log.e("땡","땡");
+
 
                     }
 
@@ -64,6 +65,7 @@ public class JoinRoom extends AppCompatActivity {
 
                     }
                 });
+                edit_code.setError("초대코드를 확인해주세요");
             }
         });
     }

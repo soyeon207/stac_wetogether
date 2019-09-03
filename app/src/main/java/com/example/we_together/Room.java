@@ -39,9 +39,11 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
         switch(v.getId()){
             case R.id.join:
                 startActivity(new Intent(Room.this,JoinRoom.class));
+
                 break;
             case R.id.make:
                 startActivity(new Intent(Room.this,MakeRoom.class));
+
                 break;
         }
 

@@ -75,6 +75,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
             case R.id.join:
                 Intent intent = new Intent(Login.this,join2.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }
