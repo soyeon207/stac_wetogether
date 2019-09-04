@@ -26,13 +26,16 @@ public class placeActivity extends AppCompatActivity implements CompoundButton.O
     private CheckBox ch8;
     private CheckBox ch9;
     private CheckBox ch10;
-    LinearLayout linearLayout = (LinearLayout)findViewById(R.id.linear1);
+    LinearLayout linearLayout;
     public ArrayList<String> placeList = new ArrayList<>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place);
+        linearLayout = findViewById(R.id.linear1);
         ch1 = (CheckBox)findViewById(R.id.checkBox2);
         ch2 = (CheckBox)findViewById(R.id.checkBox3);
         ch3 = (CheckBox)findViewById(R.id.checkBox4);
