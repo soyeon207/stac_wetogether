@@ -3,7 +3,6 @@ package com.example.we_together;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,7 +27,7 @@ public class Splash extends AppCompatActivity {
                 startActivity(new Intent(Splash.this,Room.class));
 
             else // 방을 만들지 않았다면
-                startActivity(new Intent(Splash.this,MainActivity.class));
+                startActivity(new Intent(Splash.this, MainActivity2.class));
 
             finish();
         }
