@@ -14,7 +14,10 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+
+        </activity>
         <activity android:name=".placeActivity" />
         <activity
             android:name=".Splash"
@@ -29,7 +32,6 @@
         <activity android:name=".MakeRoom" />
         <activity android:name=".Room" />
         <activity android:name=".Login" />
-        <activity android:name=".Test" />
         <activity
             android:name=".join2"
             android:label="@string/title_activity_join2"
