@@ -10,6 +10,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     EditText edit_email,edit_pwd;
     FirebaseAuth firebaseAuth;
     String email,pwd;
+    ProgressBar progressBar;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -37,6 +39,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        progressBar = findViewById(R.id.login_progress);
         join = findViewById(R.id.join);
         login = findViewById(R.id.login);
         edit_email = findViewById(R.id.login_email);
@@ -53,14 +56,17 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.login:
+                progressBar.setVisibility(View.VISIBLE);
                 email = edit_email.getText().toString().trim();
                 pwd = edit_pwd.getText().toString().trim();
 
                 if(pwd.isEmpty()) {
                    edit_pwd.requestFocus();
                    edit_pwd.setError("비밀번호를 입력해주세요");
+                   progressBar.setVisibility(View.INVISIBLE);
                 }
                 else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) { // 이메일 형식이 옳지 않은 경우
+                    progressBar.setVisibility(View.INVISIBLE);
                     edit_email.requestFocus();
                     edit_email.setError("이메일 형식이 올바르지 않습니다");
                 }
@@ -74,8 +80,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                             if (task.isSuccessful()) {
                                 Intent intent = new Intent(Login.this, Room.class);
                                 startActivity(intent);
+                                progressBar.setVisibility(View.INVISIBLE);
                                 finish();
                             } else {
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Toast.makeText(Login.this, "아이디나 비밀번호를 확인해주세요", Toast.LENGTH_LONG).show();
                             }
                     }
