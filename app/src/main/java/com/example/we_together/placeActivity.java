@@ -30,7 +30,7 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
     LinearLayout linearLayout;
     public ArrayList<String> placeList = new ArrayList<>();
     Context context;
-
+    Button go;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,7 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
         ch10 = (CheckBox)findViewById(R.id.checkBox11);
         btn = findViewById(R.id.addButton);
         context = this;
+        go = findViewById(R.id.goStart);
         /*ch1.setOnCheckedChangeListener(this);
         ch2.setOnCheckedChangeListener(this);
         ch3.setOnCheckedChangeListener(this);
@@ -60,6 +61,12 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
         ch9.setOnCheckedChangeListener(this);
         ch10.setOnCheckedChangeListener(this);*/
 
+        go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(placeActivity.this,MainActivity.class));
+            }
+        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
