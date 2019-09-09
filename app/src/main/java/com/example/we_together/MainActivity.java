@@ -1,5 +1,6 @@
 package com.example.we_together;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity
 
     TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
     FirebaseAuth firebaseAuth;
-
 
 
     @Override
