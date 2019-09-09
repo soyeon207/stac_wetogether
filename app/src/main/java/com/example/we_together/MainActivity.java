@@ -12,16 +12,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import android.view.Menu;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView header_family_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        header_family_text = (TextView)findViewById(R.id.header_family);
+        header_family_text.setText("test");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

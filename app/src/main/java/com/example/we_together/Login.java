@@ -40,6 +40,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_login);
 
         progressBar = findViewById(R.id.login_progress);
+        progressBar.setVisibility(View.INVISIBLE);
         join = findViewById(R.id.join);
         login = findViewById(R.id.login);
         edit_email = findViewById(R.id.login_email);

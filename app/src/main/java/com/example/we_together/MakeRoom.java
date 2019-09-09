@@ -33,7 +33,6 @@ public class MakeRoom extends AppCompatActivity implements View.OnClickListener{
 
         button = findViewById(R.id.btn);
         edit_roomname = findViewById(R.id.roomname);
-
         button.setOnClickListener(this);
         edit_roomname.setOnClickListener(this);
 
