@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -26,10 +28,18 @@ public class MainActivity extends AppCompatActivity
     TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
     FirebaseAuth firebaseAuth;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //////////////activity_bottom_nav//////////////////////////////
+        BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
+        BottomNavigationHelper.disableShiftMode(bottom_nav);
+        bottom_nav.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        //////////////activity_bottom_nav//////////////////////////////
 
         firebaseAuth = firebaseAuth.getInstance();
 
@@ -115,4 +125,25 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.bottom_home:
+                    return true;
+                case R.id.bottom_share:
+                    return true;
+                case R.id.bottom_cal:
+                    return true;
+
+                case R.id.bottom_com:
+                    return true;
+            }
+            return false;
+        }
+    };
+
 }

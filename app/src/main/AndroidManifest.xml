@@ -12,9 +12,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".bottom_nav"
-            android:label="@string/title_activity_bottom_nav"></activity>
-        <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
@@ -24,10 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".placeActivity"></activity>
+        <activity android:name=".placeActivity" />
         <activity
             android:name=".Splash"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".JoinRoom" />
         <activity android:name=".MakeRoom" />
         <activity android:name=".Room" />

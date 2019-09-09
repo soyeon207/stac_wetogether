@@ -20,4 +20,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="home">홈</string>
+    <string name="share">가사분담</string>
+    <string name="cal">달력</string>
+    <string name="com">커뮤니티</string>
 </resources>
