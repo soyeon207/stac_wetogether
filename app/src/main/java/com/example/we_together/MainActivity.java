@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //////////////activity_bottom_nav//////////////////////////////
         BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
         BottomNavigationHelper.disableShiftMode(bottom_nav);
