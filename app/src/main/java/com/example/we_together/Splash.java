@@ -22,11 +22,11 @@ public class Splash extends AppCompatActivity {
             SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
             String invitecode = preferences.getString("invitecode","");
 
-            if(invitecode.isEmpty())  // 방도 들어가거나 만들었다면
+            if(invitecode.isEmpty())  // 방을 만들지 않았다면
                 startActivity(new Intent(Splash.this,Room.class));
 
-            else // 방을 만들지 않았다면
-                startActivity(new Intent(Splash.this, MainActivity2.class));
+            else //방도 들어가거나 만들었다면
+                startActivity(new Intent(Splash.this, MainActivity.class));
 
             finish();
         }

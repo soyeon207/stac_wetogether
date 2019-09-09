@@ -1,5 +1,6 @@
 package com.example.we_together;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -17,15 +18,20 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        firebaseAuth = firebaseAuth.getInstance();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -47,7 +53,7 @@ public class MainActivity extends AppCompatActivity
 
 
         SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
-        header_invitecode_txt.setText(preferences.getString("invitecode",""));
+        header_invitecode_txt.setText("초대코드 : "+preferences.getString("invitecode",""));
         header_faimly_txt.setText(preferences.getString("room",""));
         header_name_txt.setText(preferences.getString("name",""));
 
@@ -100,7 +106,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.drawer_setting) {
 
         } else if (id == R.id.drawer_logout) {
+            SharedPreferences pref2 = getSharedPreferences("SAVE", MODE_PRIVATE);
+            SharedPreferences.Editor editor2 = pref2.edit();
+            editor2.clear();
+            editor2.commit(); // SharedPreferences 의 데이터 모두 삭제
 
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(this,Login.class));
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
