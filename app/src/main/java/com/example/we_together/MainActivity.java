@@ -3,6 +3,7 @@ package com.example.we_together;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,19 +15,14 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.widget.TextView;
 
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    TextView header_family_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        header_family_text = (TextView)findViewById(R.id.header_family);
-        header_family_text.setText("test");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -78,17 +74,15 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.drawer_calendar) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.drawer_invitecode) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.drawer_community) {
 
-        } else if (id == R.id.nav_tools) {
+        } else if (id == R.id.drawer_setting) {
 
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.drawer_logout) {
 
         }
 
