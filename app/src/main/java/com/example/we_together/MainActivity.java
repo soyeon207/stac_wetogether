@@ -10,19 +10,22 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -34,6 +37,20 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        //nav_header_main setText 바꾸기
+        View nav_header_view = navigationView.getHeaderView(0);
+
+        header_faimly_txt = ((View) nav_header_view).findViewById(R.id.header_family);
+        header_invitecode_txt = ((View) nav_header_view).findViewById(R.id.header_invitecode);
+        header_name_txt = ((View) nav_header_view).findViewById(R.id.header_name);
+
+
+        SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+        header_invitecode_txt.setText(preferences.getString("invitecode",""));
+        header_faimly_txt.setText(preferences.getString("room",""));
+
+
     }
 
     @Override

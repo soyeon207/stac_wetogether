@@ -70,7 +70,7 @@ public class MakeRoom extends AppCompatActivity implements View.OnClickListener{
                 childUpdates.put("/name/", postValues);
                 databaseReference.updateChildren(childUpdates);
 
-                startActivity(new Intent(MakeRoom.this,placeActivity.class));
+                startActivity(new Intent(MakeRoom.this,MainActivity.class));
                 finish();
                 break;
         }

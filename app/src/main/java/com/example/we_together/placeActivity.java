@@ -21,18 +21,8 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 public class placeActivity extends AppCompatActivity /*implements CompoundButton.OnCheckedChangeListener*/{
-    private CheckBox ch1;
-    private CheckBox ch2;
-    private CheckBox ch3;
-    private CheckBox ch4;
-    private CheckBox ch5;
-    private CheckBox ch6;
-    private CheckBox ch7;
-    private CheckBox ch8;
-    private CheckBox ch9;
-    private CheckBox ch10;
-    private Button btn;
-    private Button goStart;
+    private CheckBox ch1,ch2,ch3,ch4,ch5,ch6,ch7,ch8,ch9,ch10;
+    private Button btn,goStart;
     int cnt;
     LinearLayout linearLayout;
     public ArrayList<String> placeList = new ArrayList<>();
