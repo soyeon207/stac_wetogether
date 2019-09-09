@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -52,6 +53,8 @@ public class MakeRoom extends AppCompatActivity implements View.OnClickListener{
                 editor.putString("invitecode",invitecode);
                 editor.putString("room",room);
                 editor.commit();
+
+
 
 
                 Map<String, Object> childUpdates = new HashMap<>();
