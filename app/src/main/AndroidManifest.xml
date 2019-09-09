@@ -11,6 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Menu_community"></activity>
+        <activity android:name=".Menu_calendar" />
+        <activity android:name=".Menu_share" />
+        <activity android:name=".Menu_home" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
