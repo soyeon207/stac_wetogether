@@ -12,8 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,9 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
     LinearLayout linearLayout;
     public ArrayList<String> placeList = new ArrayList<>();
     Context context;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
 
     @Override
@@ -139,7 +144,8 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                         i++;
                     }
                     cnt=1;
-                }else{
+                }
+                else{
                     int i=0;
                     linearLayout.removeAllViewsInLayout();
                     for(String place : placeList){
@@ -162,7 +168,6 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                 }
 
 /*                for(String place : placeList){
-
                    if(cnt==0) {
                        //for(int i=0;i<btn.length;i++) {
                        //if(placeList.contains(place))
@@ -172,12 +177,9 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                        btn[i].setTextSize(11);
                        btn[i].setId(i);
                        linearLayout.addView(btn[i]);
-
-
 *//*                        btn[i].setOnClickListener(new View.OnClickListener() {
                            @Override
                            public void onClick(View view) {
-
                            }
                        });*//*
                        i++;
@@ -189,11 +191,9 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                        btn[i].setTextSize(11);
                        btn[i].setId(i);
                        linearLayout.addView(btn[i]);
-
 *//*                        btn[i].setOnClickListener(new View.OnClickListener() {
                            @Override
                            public void onClick(View view) {
-
                            }
                        });*//*
                        i++;
@@ -207,6 +207,9 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
 
 
         goStart.setOnClickListener(new View.OnClickListener() {
+            SharedPreferences pref=getSharedPreferences("SAVE", MODE_PRIVATE);
+            String ccode = pref.getString("invitecode","");
+
             @Override
             public void onClick(View v) {
                 setStringArrayPref(context, "pp" , placeList);
@@ -215,10 +218,11 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                 if (list != null) {
                     for (String value : list) {
                         Log.d("ㅇㅇㅇㅇ","Get json : " + value);
+                        databaseReference.child("room").child(ccode).child("place").push().setValue(value);
                     }
                 }
 
-                startActivity(new Intent(placeActivity.this,MainActivity.class));
+                startActivity(new Intent(placeActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -258,7 +262,6 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
     }
    /*@Override
    public void onCheckedChanged(CompoundButton button, boolean isChecked){
-
        if(ch1.isChecked()){
            placeList.add((String)ch1.getText());
        }
@@ -290,7 +293,6 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
            placeList.add((String)ch10.getText());
        }
        for(String place : placeList){
-
            Button btn[] = new Button[placeList.size()];
            for(int i=0;i<btn.length;i++) {
                btn[i] = new Button(this);
@@ -299,21 +301,16 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                btn[i].setTextSize(11);
                btn[i].setId(i);
                linearLayout.addView(btn[i]);
-
                btn[i].setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View view) {
-
                    }
                });
-
            }
        }
-
    }
 */
 
 
 
 }
-

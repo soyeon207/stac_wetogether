@@ -6,27 +6,25 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/drawer_calendar"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_send"
             android:title="우리가족일정" />
         <item
             android:id="@+id/drawer_invitecode"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_send"
             android:title="초대코드 공유" />
         <item
             android:id="@+id/drawer_community"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_send"
             android:title="커뮤니티" />
         <item
             android:id="@+id/drawer_setting"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_send"
             android:title="환경설정" />
 
         <item
             android:id="@+id/drawer_logout"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_send"
             android:title="로그아웃" />
     </group>
-
-
 
 </menu>
