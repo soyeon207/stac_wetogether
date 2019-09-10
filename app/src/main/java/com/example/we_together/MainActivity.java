@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity
     private Menu_community menu_community = new Menu_community();
     private Menu_calendar menu_calendar = new Menu_calendar();
 
+    //Dialog
+    private inviteDialog inviteDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,7 +125,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.drawer_calendar) {
             // Handle the camera action
         } else if (id == R.id.drawer_invitecode) {
-
+            inviteDialog = new inviteDialog(this,exit_listner);
+            inviteDialog.show();
         } else if (id == R.id.drawer_community) {
 
         } else if (id == R.id.drawer_setting) {
@@ -166,6 +170,12 @@ public class MainActivity extends AppCompatActivity
                     break;
             }
             return true;
+        }
+    };
+
+    private View.OnClickListener exit_listner = new View.OnClickListener(){
+        public void onClick(View v){
+            inviteDialog.dismiss();
         }
     };
 
