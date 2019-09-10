@@ -12,8 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,9 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
     LinearLayout linearLayout;
     public ArrayList<String> placeList = new ArrayList<>();
     Context context;
+
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
 
     @Override
@@ -139,7 +144,8 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                         i++;
                     }
                     cnt=1;
-                }else{
+                }
+                else{
                     int i=0;
                     linearLayout.removeAllViewsInLayout();
                     for(String place : placeList){
@@ -207,6 +213,9 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
 
 
         goStart.setOnClickListener(new View.OnClickListener() {
+            SharedPreferences pref=getSharedPreferences("SAVE", MODE_PRIVATE);
+            String ccode = pref.getString("invitecode","");
+
             @Override
             public void onClick(View v) {
                 setStringArrayPref(context, "pp" , placeList);
@@ -215,10 +224,11 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                 if (list != null) {
                     for (String value : list) {
                         Log.d("ㅇㅇㅇㅇ","Get json : " + value);
+                        databaseReference.child("room").child(ccode).child("place").push().setValue(value);
                     }
                 }
 
-                startActivity(new Intent(placeActivity.this,MainActivity.class));
+                startActivity(new Intent(placeActivity.this, MainActivity.class));
                 finish();
             }
         });
