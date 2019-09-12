@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Menu_share">
+    tools:context="com.example.we_together.Menu_share">
 
     <LinearLayout
         android:layout_marginTop="40dp"
@@ -15,15 +15,18 @@
         android:layout_gravity="center"
         >
         <TextView
+            android:id="@+id/day1"
+            android:textColor="@color/unchecked_text"
             android:textSize="@dimen/week_text_size"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mon"
-
             />
 
         <TextView
+            android:id="@+id/day2"
+            android:textColor="@color/unchecked_text"
             android:textSize="@dimen/week_text_size"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
@@ -32,6 +35,8 @@
             />
 
         <TextView
+            android:textColor="@color/unchecked_text"
+            android:id="@+id/day3"
             android:textSize="@dimen/week_text_size"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
@@ -39,6 +44,8 @@
             android:text="@string/wed"
             />
         <TextView
+            android:textColor="@color/unchecked_text"
+            android:id="@+id/day4"
             android:textSize="@dimen/week_text_size"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
@@ -46,6 +53,8 @@
             android:text="@string/thu"
             />
         <TextView
+            android:textColor="@color/unchecked_text"
+            android:id="@+id/day5"
             android:textSize="@dimen/week_text_size"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
@@ -53,6 +62,8 @@
             android:text="@string/fri"
             />
         <TextView
+            android:textColor="@color/unchecked_text"
+            android:id="@+id/day6"
             android:textSize="@dimen/week_text_size"
             android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
@@ -60,11 +71,14 @@
             android:text="@string/sat"
             />
         <TextView
+            android:textColor="@color/unchecked_text"
+            android:id="@+id/day7"
             android:textSize="@dimen/week_text_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sun"
             />
+
 
     </LinearLayout>
 

@@ -5,4 +5,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="w">#ffffff</color>
     <color name="main_color">#4370b8</color>
+    <color name="MainColor">#2f4c9b</color>
+    <color name="unchecked_text">#9b9b9b</color>
+
 </resources>

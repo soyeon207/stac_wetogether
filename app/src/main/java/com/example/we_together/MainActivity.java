@@ -20,6 +20,7 @@ import android.view.MenuItem;
 
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity
     private Menu_community menu_community = new Menu_community();
     private Menu_calendar menu_calendar = new Menu_calendar();
 
+    private Button button;
+
     //Dialog
     private inviteDialog inviteDialog;
 
@@ -46,7 +49,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         //////////////activity_bottom_nav//////////////////////////////
         BottomNavigationView bottom_nav = findViewById(R.id.bottom_nav);
@@ -81,7 +83,6 @@ public class MainActivity extends AppCompatActivity
         header_faimly_txt = ((View) nav_header_view).findViewById(R.id.header_family);
         header_invitecode_txt = ((View) nav_header_view).findViewById(R.id.header_invitecode);
         header_name_txt = ((View) nav_header_view).findViewById(R.id.header_name);
-
 
         SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
         header_invitecode_txt.setText("초대코드 : "+preferences.getString("invitecode",""));

@@ -8,4 +8,6 @@
 
     <dimen name="week_right">20dp</dimen>
     <dimen name="week_text_size">23sp</dimen>
+    <dimen name="week_text_size2">28sp</dimen>
+
 </resources>
