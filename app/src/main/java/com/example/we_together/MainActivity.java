@@ -1,5 +1,7 @@
 package com.example.we_together;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -29,7 +31,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener ,View.OnClickListener{
 
     TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
     FirebaseAuth firebaseAuth;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity
 
     //Dialog
     private inviteDialog inviteDialog;
+    private add_dialog add_dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,8 @@ public class MainActivity extends AppCompatActivity
         header_name_txt.setText(preferences.getString("name",""));
 
         image_invisible();
+
+        imageView.setOnClickListener(this);
     }
 
 
@@ -130,6 +135,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+
 
         if (id == R.id.drawer_calendar) {
             // Handle the camera action
@@ -196,4 +203,20 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+    private View.OnClickListener exit_listner2 = new View.OnClickListener(){
+        public void onClick(View v){
+            add_dialog.dismiss();
+        }
+    };
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.add_image:
+                Log.e("a","a");
+                add_dialog = new add_dialog(this,exit_listner2);
+                add_dialog.show();
+                break;
+        }
+    }
 }

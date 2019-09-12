@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".inviteDialog"></activity>
+        <activity android:name=".add_dialog"></activity>
+        <activity android:name=".inviteDialog" />
         <activity android:name=".Menu_community" />
         <activity android:name=".Menu_calendar" />
         <activity android:name=".Menu_share" />
