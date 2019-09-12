@@ -12,15 +12,18 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity
     TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
     FirebaseAuth firebaseAuth;
 
-    Toolbar toolbar,toolbar2;
+    Toolbar toolbar;
 
     //FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
     private FragmentManager fragmentManager = getSupportFragmentManager();
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity
     private Menu_calendar menu_calendar = new Menu_calendar();
 
     private Button button;
+    private ImageView imageView;
 
     //Dialog
     private inviteDialog inviteDialog;
@@ -68,25 +72,20 @@ public class MainActivity extends AppCompatActivity
         firebaseAuth = firebaseAuth.getInstance();
 
         toolbar = findViewById(R.id.toolbar);
-        toolbar2 = findViewById(R.id.toolbar2);
+        imageView = findViewById(R.id.add_image);
 
-        setSupportActionBar(toolbar2);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        ActionBarDrawerToggle toggle2 = new ActionBarDrawerToggle(
-                this, drawer, toolbar2, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        drawer.addDrawerListener(toggle2);
-        toggle2.syncState();
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        toolbar2.setVisibility(View.INVISIBLE);
         navigationView.setNavigationItemSelectedListener(this);
 
         //nav_header_main setText 바꾸기
@@ -101,8 +100,8 @@ public class MainActivity extends AppCompatActivity
         header_faimly_txt.setText(preferences.getString("room",""));
         header_name_txt.setText(preferences.getString("name",""));
 
+        image_invisible();
     }
-
 
 
     @Override
@@ -121,12 +120,7 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -162,9 +156,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void toolbar_visible(){
-        toolbar.setVisibility(View.VISIBLE);
-        toolbar2.setVisibility(View.INVISIBLE);
+    public void image_invisible(){
+        imageView.setVisibility(View.INVISIBLE);
     }
 
     //bottomnavigation 클릭시
@@ -176,21 +169,20 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.bottom_home:
-                    toolbar_visible();
+                    image_invisible();
                     transaction.replace(R.id.frame_layout,menu_home).commitAllowingStateLoss();
                     break;
                 case R.id.bottom_share:
-                    toolbar.setVisibility(View.INVISIBLE);
-                    toolbar2.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frame_layout,menu_share).commitAllowingStateLoss();
                     break;
                 case R.id.bottom_cal:
-                    toolbar_visible();
+                    image_invisible();
                     transaction.replace(R.id.frame_layout,menu_calendar).commitAllowingStateLoss();
                     break;
 
                 case R.id.bottom_com:
-                    toolbar_visible();
+                    image_invisible();
                     transaction.replace(R.id.frame_layout,menu_community).commitAllowingStateLoss();
                     break;
             }
