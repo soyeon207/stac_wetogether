@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity
     TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
     FirebaseAuth firebaseAuth;
 
+    Toolbar toolbar,toolbar2;
+
     //FrameLayout에 각 메뉴의 Fragment를 바꿔 줌
     private FragmentManager fragmentManager = getSupportFragmentManager();
 
@@ -65,7 +67,10 @@ public class MainActivity extends AppCompatActivity
 
         firebaseAuth = firebaseAuth.getInstance();
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
+        toolbar2 = findViewById(R.id.toolbar2);
+
+        setSupportActionBar(toolbar2);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -73,8 +78,15 @@ public class MainActivity extends AppCompatActivity
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
+        ActionBarDrawerToggle toggle2 = new ActionBarDrawerToggle(
+                this, drawer, toolbar2, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+
+        drawer.addDrawerListener(toggle2);
+        toggle2.syncState();
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        toolbar2.setVisibility(View.INVISIBLE);
         navigationView.setNavigationItemSelectedListener(this);
 
         //nav_header_main setText 바꾸기
@@ -90,6 +102,8 @@ public class MainActivity extends AppCompatActivity
         header_name_txt.setText(preferences.getString("name",""));
 
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -148,6 +162,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    public void toolbar_visible(){
+        toolbar.setVisibility(View.VISIBLE);
+        toolbar2.setVisibility(View.INVISIBLE);
+    }
+
     //bottomnavigation 클릭시
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -157,16 +176,21 @@ public class MainActivity extends AppCompatActivity
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.bottom_home:
+                    toolbar_visible();
                     transaction.replace(R.id.frame_layout,menu_home).commitAllowingStateLoss();
                     break;
                 case R.id.bottom_share:
+                    toolbar.setVisibility(View.INVISIBLE);
+                    toolbar2.setVisibility(View.VISIBLE);
                     transaction.replace(R.id.frame_layout,menu_share).commitAllowingStateLoss();
                     break;
                 case R.id.bottom_cal:
+                    toolbar_visible();
                     transaction.replace(R.id.frame_layout,menu_calendar).commitAllowingStateLoss();
                     break;
 
                 case R.id.bottom_com:
+                    toolbar_visible();
                     transaction.replace(R.id.frame_layout,menu_community).commitAllowingStateLoss();
                     break;
             }
