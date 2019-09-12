@@ -4,12 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Menu_share">
 
-    <TextView
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="share"
-        />
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+        <TextView
+            android:textSize="@dimen/week_text_size"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mon"
+
+            />
+
+        <TextView
+            android:textSize="@dimen/week_text_size"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tue"
+            />
+
+        <TextView
+            android:textSize="@dimen/week_text_size"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/wed"
+            />
+        <TextView
+            android:textSize="@dimen/week_text_size"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/thu"
+            />
+        <TextView
+            android:textSize="@dimen/week_text_size"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fri"
+            />
+        <TextView
+            android:textSize="@dimen/week_text_size"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sat"
+            />
+        <TextView
+            android:textSize="@dimen/week_text_size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sun"
+            />
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>
