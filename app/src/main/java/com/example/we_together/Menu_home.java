@@ -25,7 +25,7 @@ public class Menu_home extends Fragment {
     public ArrayList<String> placeList = new ArrayList<>();
     Context context;
     int cnt=0;
-    int i;
+
 
     @Nullable
     @Override
@@ -36,15 +36,19 @@ public class Menu_home extends Fragment {
         linearLayout = v.findViewById(R.id.linear1);
         context = this.getContext();
 
+
         ArrayList<String> list = getStringArrayPref(context,"pp");
+
         if (list != null) {
+            placeList.clear();
             for (String value : list) {
                 Log.d("ㅇㅇㅇㅇ","Get json : " + value);
+
                 placeList.add(value);
             }
         }
 
-
+        linearLayout.removeAllViewsInLayout();
         Button btn[] = new Button[placeList.size()+1];
         btn[0] = new Button(context);
         btn[0].setText("모두");
@@ -59,8 +63,9 @@ public class Menu_home extends Fragment {
             }
         });
 
-        if(cnt==0) {
-            i=1;
+        int i=1;
+        if(i<=placeList.size()) {
+
             for(String place : placeList){
 
 
@@ -75,14 +80,15 @@ public class Menu_home extends Fragment {
                 btn[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Log.d("버튼튼","버튼 누름 : "+i );
+                        Button btn2= (Button)view;
+                        Log.d("버튼튼","버튼 누름 : "+btn2);
                     }
                 });
                 i++;
             }
-            cnt=1;
+            cnt++;
         }
-        else{
+        //else{
 /*
             int i=0;
             linearLayout.removeAllViewsInLayout();
@@ -103,19 +109,23 @@ public class Menu_home extends Fragment {
 */
 
 
-
-        }
-
+        //}
 
 
+/*
+        btn[i].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("버튼튼","버튼 누름 : "+i );
+            }
+        });
+*/
 
 
 
 
         return v;
     }
-
-
 
 
 
