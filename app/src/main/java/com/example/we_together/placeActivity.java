@@ -218,7 +218,8 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                 if (list != null) {
                     for (String value : list) {
                         Log.d("ㅇㅇㅇㅇ","Get json : " + value);
-                        databaseReference.child("room").child(ccode).child("place").push().setValue(value);
+                        /*databaseReference.child("room").child(ccode).child("place").child(value).push().setValue(value);*/
+                        databaseReference.child("room").child(ccode).child("place").child(value).push().setValue(value);
                     }
                 }
 

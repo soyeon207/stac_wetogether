@@ -16,7 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MakeRoom extends AppCompatActivity implements View.OnClickListener{
+public class
+MakeRoom extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();

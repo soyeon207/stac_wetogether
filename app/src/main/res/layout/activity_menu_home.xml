@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,22 +7,116 @@
     android:orientation="vertical"
     tools:context=".Menu_home">
 
+    <TextView
 
-    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Today"
+        android:layout_margin="15dp"
+        android:textSize="25dp"
+        android:textStyle="bold"
+
+        android:id="@+id/today"
+        />
+
+    <TextView
+
+        android:layout_marginTop="30dp"
+        android:layout_toRightOf="@+id/today"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:gravity="left"
+        android:textStyle="bold"
+        android:id="@+id/today_tv"
+        android:text="오늘 날짜"
+        />
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/today"
+        android:layout_alignStart="@+id/today"
+        android:layout_below="@+id/today"
+        android:text="가사 일정"
+        android:textColor="#70aae4"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+
+
+
+    <LinearLayout
+
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/today_tv"
+        android:layout_alignRight="@+id/today_tv"
+        android:layout_below="@+id/textView3"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linear1"
+                >
+
+
+            </LinearLayout>
+        </HorizontalScrollView>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/linear1"
-            >
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
+            <ListView
+                android:id="@+id/listviewmsg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:background="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="3dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_alignLeft="@+id/today"
+                android:layout_alignStart="@+id/today"
+                android:text="EVENT"
+                android:textColor="#70aae4"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <ListView
+                android:id="@+id/lv2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_margin="3dp"
+                android:background="#ffffff" />
 
         </LinearLayout>
-    </HorizontalScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
