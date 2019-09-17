@@ -2,14 +2,18 @@ package com.example.we_together;
 
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -25,7 +29,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
-    Button join,login;
+    TextView join;
+    Button login;
     EditText edit_email,edit_pwd;
     FirebaseAuth firebaseAuth;
     String email,pwd;
@@ -38,6 +43,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         progressBar = findViewById(R.id.login_progress);
         progressBar.setVisibility(View.INVISIBLE);
