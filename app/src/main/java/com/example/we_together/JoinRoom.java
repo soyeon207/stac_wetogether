@@ -21,9 +21,10 @@ public class JoinRoom extends AppCompatActivity {
 
     EditText edit_code;
     Button btn_code;
-    String invite_code;
+    String invite_code,room_name,code_name;
     FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
     DatabaseReference mdatabaseRef = mdatabase.getReference();
+    int a=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,37 +37,54 @@ public class JoinRoom extends AppCompatActivity {
         btn_code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 invite_code = edit_code.getText().toString();
-
-                mdatabaseRef.child("name").addValueEventListener(new ValueEventListener() {
+                mdatabaseRef.child("room").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot:dataSnapshot.getChildren()){
-                            if(snapshot.getKey().equals(invite_code)){
-                                SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
-                                SharedPreferences.Editor editor = preferences.edit();
-                                editor.putString("invitecode",snapshot.getKey());
-                                editor.putString("room",snapshot.getValue().toString());
-                                editor.commit();
+                            if(snapshot.getKey().equals(invite_code)){ // 방 이름이 있다면
 
+                                // 방이름을 저장해준다
+                                mdatabaseRef.child("room").child(invite_code).child("name").addValueEventListener(new ValueEventListener() {
 
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        for(DataSnapshot s:dataSnapshot.getChildren()){
+                                            room_name = s.getValue().toString();
 
-                                startActivity(new Intent(JoinRoom.this, MainActivity2.class));
-                                finish();
+                                            if(a==0)
+                                                edit_code.setError("초대코드를 확인해주세요");
+
+                                            else {
+                                                SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+                                                SharedPreferences.Editor editor = preferences.edit();
+
+                                                editor.putString("room",room_name);
+                                                editor.putString("invitecode",code_name);
+                                                editor.commit();
+
+                                                startActivity(new Intent(JoinRoom.this, MainActivity.class));
+                                                finish();
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) { }
+                                });
+
+                                a=1;
+
+                                // 회원 정보 저장
+                                code_name = snapshot.getKey();
                             }
                         }
-
-
-
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
+                    public void onCancelled(@NonNull DatabaseError databaseError) { }
                 });
-                edit_code.setError("초대코드를 확인해주세요");
+
             }
         });
     }

@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
         header_invitecode_txt.setText("초대코드 : "+preferences.getString("invitecode",""));
+
         header_faimly_txt.setText(preferences.getString("room",""));
         header_name_txt.setText(preferences.getString("name",""));
 
