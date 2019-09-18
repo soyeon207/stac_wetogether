@@ -24,7 +24,12 @@ public class JoinRoom extends AppCompatActivity {
     String invite_code,room_name,code_name;
     FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
     DatabaseReference mdatabaseRef = mdatabase.getReference();
-    int a=0;
+
+    FirebaseDatabase mdatabase2 = FirebaseDatabase.getInstance();
+    DatabaseReference mdatabaseRef2 = mdatabase2.getReference();
+    int a=0,b=0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class JoinRoom extends AppCompatActivity {
                             if(snapshot.getKey().equals(invite_code)){ // 방 이름이 있다면
 
                                 // 방이름을 저장해준다
-                                mdatabaseRef.child("room").child(invite_code).child("name").addValueEventListener(new ValueEventListener() {
+                                mdatabaseRef2.child("room").child(invite_code).child("name").addValueEventListener(new ValueEventListener() {
 
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -56,6 +61,7 @@ public class JoinRoom extends AppCompatActivity {
                                                 edit_code.setError("초대코드를 확인해주세요");
 
                                             else {
+
                                                 SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
                                                 SharedPreferences.Editor editor = preferences.edit();
 
@@ -63,8 +69,6 @@ public class JoinRoom extends AppCompatActivity {
                                                 editor.putString("invitecode",code_name);
                                                 editor.commit();
 
-                                                startActivity(new Intent(JoinRoom.this, MainActivity.class));
-                                                finish();
                                             }
                                         }
                                     }
@@ -79,11 +83,27 @@ public class JoinRoom extends AppCompatActivity {
                                 code_name = snapshot.getKey();
                             }
                         }
+
+                        if(a==1){
+                            if(b==0){
+                                Log.e("실행","실행");
+                                b=1;
+                                SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+                                mdatabaseRef.child("room").child(code_name).child("user").push().setValue("a");
+
+                            }
+                            else {
+                                startActivity(new Intent(JoinRoom.this, MainActivity.class));
+                                finish();
+                            }
+
+                        }
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) { }
                 });
+
 
             }
         });

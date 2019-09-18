@@ -56,6 +56,7 @@ MakeRoom extends AppCompatActivity implements View.OnClickListener{
                 editor.commit();
 
                 databaseReference.child("room").child(invitecode).child("name").push().setValue(room);
+                databaseReference.child("room").child(invitecode).child("user").push().setValue(preferences.getString("name",""));
 
                 startActivity(new Intent(MakeRoom.this,placeActivity.class));
                 finish();

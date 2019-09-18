@@ -81,6 +81,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 else {
 
 
+
+
+
                 firebaseAuth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
