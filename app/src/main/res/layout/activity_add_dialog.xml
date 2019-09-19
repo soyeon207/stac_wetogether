@@ -56,13 +56,20 @@
             android:layout_gravity="center_horizontal"
             >
 
-            <EditText
-                android:layout_width="70dp"
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:textAlignment="center"
-                android:hint="사람"
+
                 />
+
+            <Spinner
+                android:id="@+id/p_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                />
+
 
             <EditText
                 android:layout_width="70dp"

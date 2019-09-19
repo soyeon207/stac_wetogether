@@ -147,8 +147,6 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-
-
         if (id == R.id.drawer_calendar) {
             // Handle the camera action
         } else if (id == R.id.drawer_invitecode) {
@@ -192,6 +190,8 @@ public class MainActivity extends AppCompatActivity
 
 
     public void function(){
+        Log.e("실행됨","실행됨");
+
         SharedPreferences.Editor editor2 = pref2.edit();
         editor2.clear();
         editor2.commit();
