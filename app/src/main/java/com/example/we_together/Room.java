@@ -23,11 +23,31 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
     Button make_btn, join_btn;
     FirebaseAuth firebaseAuth;
     TextView textView;
-    String user_code;
+    String user_code,code,name;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
 
     private room_dialog room_dialog;
+
+    private View.OnClickListener new_listner = new View.OnClickListener(){
+        public void onClick(View v){
+
+
+            room_dialog.dismiss();
+        }
+    };
+
+    private View.OnClickListener origin_listner = new View.OnClickListener(){
+        public void onClick(View v){
+
+
+            editor.putString("invitecode",code);
+            editor.putString("name",name);
+
+            room_dialog.dismiss();
+            start();
+        }
+    };
     public void room_chk(){
 
         preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
@@ -44,18 +64,16 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
 
                 for(DataSnapshot message:dataSnapshot.getChildren()){
 
-                    room_dialog = new room_dialog(Room.this);
+                    room_dialog = new room_dialog(Room.this,new_listner,origin_listner);
                     room_dialog.show();
 
-//                    if(message.getKey().equals("code")){
-//                        Log.e("code",message.getValue().toString());
-//                        editor.putString("invitecode",message.getValue().toString());
-//                    }
-//                    else {
-//                        Log.e("name",message.getValue().toString());
-//                        editor.putString("name",message.getValue().toString());
-//                        start();
-//                    }
+                    if(message.getKey().equals("code"))
+                        code = message.getValue().toString();
+
+
+                    else
+                        name = message.getValue().toString();
+
                 }
 
 

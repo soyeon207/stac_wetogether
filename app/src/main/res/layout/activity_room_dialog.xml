@@ -47,6 +47,7 @@
                     android:text="방 새로 만들기"
                     />
                 <Button
+                    android:id="@+id/new_room"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="선택"
@@ -66,6 +67,7 @@
                     android:text="원래 있던 방 들어가기"
                     />
                 <Button
+                    android:id="@+id/origin_room"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="선택"

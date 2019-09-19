@@ -7,11 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class room_dialog extends Dialog {
 
-    public room_dialog(@NonNull Context context) {
+    private Button new_btn,origin_btn;
+    private View.OnClickListener new_listener,origin_listener;
+
+    public room_dialog(@NonNull Context context,View.OnClickListener new_listener,View.OnClickListener origin_listener) {
         super(context);
+
+        this.new_listener = new_listener;
+        this.origin_listener = origin_listener;
     }
 
     @Override
@@ -24,5 +31,12 @@ public class room_dialog extends Dialog {
         getWindow().setAttributes(layoutParams);
 
         setContentView(R.layout.activity_room_dialog);
+
+        new_btn = findViewById(R.id.new_room);
+        origin_btn=findViewById(R.id.origin_room);
+
+        new_btn.setOnClickListener(new_listener);
+        origin_btn.setOnClickListener(origin_listener);
+
     }
 }
