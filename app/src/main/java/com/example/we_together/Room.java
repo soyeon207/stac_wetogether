@@ -32,7 +32,6 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
     private View.OnClickListener new_listner = new View.OnClickListener(){
         public void onClick(View v){
 
-
             room_dialog.dismiss();
         }
     };

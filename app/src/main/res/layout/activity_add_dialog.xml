@@ -189,6 +189,7 @@
             android:layout_marginRight="30dp"
             android:layout_marginTop="58dp"
             android:text="추가하기"
+            android:id="@+id/add_btn"
             android:textColor="#C2C2C2"
             android:background="@drawable/radius_button"
             />

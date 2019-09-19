@@ -27,6 +27,7 @@ import java.util.List;
 public class add_dialog extends Dialog {
 
     private ImageView exit_btn;
+    private Button add_btn;
     private View.OnClickListener exit_listner;
     private Spinner spinner,p_spinner;
 
@@ -67,7 +68,6 @@ public class add_dialog extends Dialog {
                 for(DataSnapshot message:dataSnapshot.getChildren()){
                     list.add(message.getValue().toString());
 
-                    Log.e("value",message.getValue().toString());
                 }
 
                 List();
@@ -108,7 +108,6 @@ public class add_dialog extends Dialog {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("spinner",list.get(i));
             }
 
             @Override
@@ -132,8 +131,16 @@ public class add_dialog extends Dialog {
         setContentView(R.layout.activity_add_dialog);
 
         exit_btn = findViewById(R.id.add_close);
+        add_btn = findViewById(R.id.add_btn);
         spinner = findViewById(R.id.spinner);
         p_spinner = findViewById(R.id.p_spinner);
+
+        add_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.e("버튼","버튼");
+            }
+        });
 
         exit_btn.setOnClickListener(exit_listner);
     }
