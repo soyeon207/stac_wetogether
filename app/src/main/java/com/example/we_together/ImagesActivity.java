@@ -1,19 +1,14 @@
 package com.example.we_together;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -27,54 +22,44 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Menu_community extends Fragment implements ImageAdapter.OnItemClickListener{
-
+public class ImagesActivity extends AppCompatActivity implements ImageAdapter.OnItemClickListener {
     private RecyclerView mRecyclerView;
     private ImageAdapter mAdapter;
-Context context;
-    //private ProgressBar mProgressCircle;
+
+    private ProgressBar mProgressCircle;
 
     private FirebaseStorage mStorage;
     private DatabaseReference mDatabaseRef;
     private ValueEventListener mDBListener;
 
     private List<Upload> mUploads;
+    Context context;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_images);
 
-        View rootView = inflater.inflate(R.layout.activity_menu_community, container, false);
-        mRecyclerView = rootView.findViewById(R.id.recycler_view);
+        mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        ImageView camera = rootView.findViewById(R.id.camera);
-        camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),UploadMain.class);
-                startActivity(intent);
-            }
-        });
-
-        //mProgressCircle = rootView.findViewById(R.id.progress_circle);
+        mProgressCircle = findViewById(R.id.progress_circle);
 
         mUploads = new ArrayList<>();
 
-        mAdapter = new ImageAdapter(getActivity(), mUploads);
+        mAdapter = new ImageAdapter(ImagesActivity.this, mUploads);
 
         mRecyclerView.setAdapter(mAdapter);
 
-        //mAdapter.setOnItemClickListener(Menu_community.this);
+        mAdapter.setOnItemClickListener(ImagesActivity.this);
 
         mStorage = FirebaseStorage.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("room");
-        context = this.getContext();
+
+        context = this;
         SharedPreferences pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
         String ccode = pref.getString("invitecode","");
-
-
-
 
 
         mDBListener = mDatabaseRef.child(ccode).child("upload").addValueEventListener(new ValueEventListener() {
@@ -91,18 +76,16 @@ Context context;
 
                 mAdapter.notifyDataSetChanged();
 
-                // mProgressCircle.setVisibility(View.INVISIBLE);
+                mProgressCircle.setVisibility(View.INVISIBLE);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                //mProgressCircle.setVisibility(View.INVISIBLE);
+                Toast.makeText(ImagesActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                mProgressCircle.setVisibility(View.INVISIBLE);
             }
         });
-
-        return rootView;
     }
-
 
     @Override
     public void onItemClick(int position) {
@@ -125,9 +108,14 @@ Context context;
             public void onSuccess(Void aVoid) {
                 mDatabaseRef.child(selectedKey).removeValue();
 
+                Toast.makeText(ImagesActivity.this, "Item deleted", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDatabaseRef.removeEventListener(mDBListener);
+    }
 }
