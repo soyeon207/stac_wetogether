@@ -29,12 +29,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener ,View.OnClickListener{
 
     TextView header_faimly_txt,header_name_txt,header_invitecode_txt;
     FirebaseAuth firebaseAuth;
+
+    FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
+    DatabaseReference mdatabaseRef = mdatabase.getReference();
+
+    SharedPreferences pref2;
 
     Toolbar toolbar;
 
@@ -100,6 +110,7 @@ public class MainActivity extends AppCompatActivity
 
         SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
         header_invitecode_txt.setText("초대코드 : "+preferences.getString("invitecode",""));
+
         header_faimly_txt.setText(preferences.getString("room",""));
         header_name_txt.setText(preferences.getString("name",""));
 
@@ -148,19 +159,46 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.drawer_setting) {
 
         } else if (id == R.id.drawer_logout) {
-            SharedPreferences pref2 = getSharedPreferences("SAVE", MODE_PRIVATE);
-            SharedPreferences.Editor editor2 = pref2.edit();
-            editor2.clear();
-            editor2.commit(); // SharedPreferences 의 데이터 모두 삭제
 
-            firebaseAuth.signOut();
-            finish();
-            startActivity(new Intent(this,Login.class));
+            pref2 = getSharedPreferences("SAVE", MODE_PRIVATE);
+            mdatabaseRef.child("room").child(pref2.getString("invitecode","")).child("user").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot d:dataSnapshot.getChildren()){
+
+                        if(d.getValue().toString().equals(pref2.getString("name",""))){
+
+                            mdatabaseRef.child("room").child(pref2.getString("invitecode","")).child("user").child(d.getKey()).removeValue();
+
+                            function();
+                            return;
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void function(){
+        SharedPreferences.Editor editor2 = pref2.edit();
+        editor2.clear();
+        editor2.commit();
+
+        startActivity(new Intent(this,Login.class));
+        firebaseAuth.signOut();
+        finish();
     }
 
     public void image_invisible(){

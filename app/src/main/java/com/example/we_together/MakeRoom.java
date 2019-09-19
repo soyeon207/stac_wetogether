@@ -55,24 +55,18 @@ MakeRoom extends AppCompatActivity implements View.OnClickListener{
                 editor.putString("room",room);
                 editor.commit();
 
-
-
+                databaseReference.child("room").child(invitecode).child("name").push().setValue(room);
+                databaseReference.child("room").child(invitecode).child("user").push().setValue(preferences.getString("name",""));
 
                 Map<String, Object> childUpdates = new HashMap<>();
                 Map<String, Object> postValues = null;
 
-                FirebaseName post = new FirebaseName(room," ");
+                FirebaseJoin post = new FirebaseJoin(invitecode,room);
                 postValues = post.toMap();
 
-                childUpdates.put("/room/" + invitecode, postValues);
+                childUpdates.put("/users/" + preferences.getString("code","")+"/room", postValues);
                 databaseReference.updateChildren(childUpdates);
 
-
-                FirebaseName post2 = new FirebaseName(room,invitecode);
-                postValues = post2.toMap();
-
-                childUpdates.put("/name/", postValues);
-                databaseReference.updateChildren(childUpdates);
 
                 startActivity(new Intent(MakeRoom.this,placeActivity.class));
                 finish();

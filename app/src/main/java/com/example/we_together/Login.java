@@ -2,14 +2,19 @@ package com.example.we_together;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -25,11 +30,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity implements View.OnClickListener{
 
-    Button join,login;
+    TextView join;
+    Button login;
     EditText edit_email,edit_pwd;
     FirebaseAuth firebaseAuth;
     String email,pwd;
     ProgressBar progressBar;
+
+    FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
+    DatabaseReference mdatabaseRef = mdatabase.getReference();
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -38,6 +47,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        mdatabaseRef.child("room").child("oA1n6o").child("user").child("-Lp6GBbWnXpOiFa0Ia2u").removeValue();
 
         progressBar = findViewById(R.id.login_progress);
         progressBar.setVisibility(View.INVISIBLE);
@@ -75,6 +87,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                 else {
 
 
+
+
+
                 firebaseAuth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(Login.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -82,6 +97,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 Intent intent = new Intent(Login.this, Room.class);
                                 startActivity(intent);
                                 progressBar.setVisibility(View.INVISIBLE);
+
+                                SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("code",firebaseAuth.getUid());
+                                editor.commit();
+
                                 finish();
                             } else {
                                 progressBar.setVisibility(View.INVISIBLE);

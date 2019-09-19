@@ -1,6 +1,7 @@
 package com.example.we_together;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -81,6 +82,12 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
                             progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(getApplication(),Room.class));
                             databaseReference.child("users").child(firebaseAuth.getUid()).child("name").push().setValue(name);
+
+                            SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = preferences.edit();
+                            editor.putString("code",firebaseAuth.getUid());
+                            editor.commit();
+
                         }
                         else {
                             progressBar.setVisibility(View.INVISIBLE);
