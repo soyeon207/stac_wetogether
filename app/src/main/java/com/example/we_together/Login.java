@@ -2,6 +2,7 @@ package com.example.we_together;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -46,6 +47,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
+        mdatabaseRef.child("room").child("oA1n6o").child("user").child("-Lp6GBbWnXpOiFa0Ia2u").removeValue();
 
         progressBar = findViewById(R.id.login_progress);
         progressBar.setVisibility(View.INVISIBLE);
@@ -93,6 +97,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
                                 Intent intent = new Intent(Login.this, Room.class);
                                 startActivity(intent);
                                 progressBar.setVisibility(View.INVISIBLE);
+
+                                SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("code",firebaseAuth.getUid());
+                                editor.commit();
+
                                 finish();
                             } else {
                                 progressBar.setVisibility(View.INVISIBLE);

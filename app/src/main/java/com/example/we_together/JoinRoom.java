@@ -89,6 +89,8 @@ public class JoinRoom extends AppCompatActivity {
                                 b=1;
                                 SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
                                 mdatabaseRef.child("room").child(code_name).child("user").push().setValue(preferences.getString("name",""));
+                                mdatabaseRef.child("users").child(preferences.getString("code","")).child("room").push().setValue(preferences.getString("invitecode",""));
+
 
                             }
                             else {

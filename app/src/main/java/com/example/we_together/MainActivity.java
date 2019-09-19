@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity
                             mdatabaseRef.child("room").child(pref2.getString("invitecode","")).child("user").child(d.getKey()).removeValue();
 
                             function();
-                             return;
+                            return;
                         }
                     }
                 }

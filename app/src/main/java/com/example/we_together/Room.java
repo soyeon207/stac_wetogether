@@ -24,9 +24,58 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
     FirebaseAuth firebaseAuth;
     TextView textView;
     String user_code;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
+
+    private room_dialog room_dialog;
+    public void room_chk(){
+
+        preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+        editor = preferences.edit();
+
+        FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
+        DatabaseReference mdatabaseRef = mdatabase.getReference();
+
+        mdatabaseRef.child("users").child(preferences.getString("code","")).child("room").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+                for(DataSnapshot message:dataSnapshot.getChildren()){
+
+                    room_dialog = new room_dialog(Room.this);
+                    room_dialog.show();
+
+//                    if(message.getKey().equals("code")){
+//                        Log.e("code",message.getValue().toString());
+//                        editor.putString("invitecode",message.getValue().toString());
+//                    }
+//                    else {
+//                        Log.e("name",message.getValue().toString());
+//                        editor.putString("name",message.getValue().toString());
+//                        start();
+//                    }
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        });
+
+
+    }
+
+    public void start(){
+        startActivity(new Intent(this,MainActivity.class));
+        finish();
+    }
+
 
     public void find_name(){
-        Log.e("실행","실행");
+
         FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
         DatabaseReference mdatabaseRef = mdatabase.getReference();
 
@@ -35,11 +84,9 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot message:dataSnapshot.getChildren()){
 
-                    SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("name",message.getValue().toString());
-
-                    Log.e("name",message.getValue().toString());
 
                     editor.commit();
 
@@ -57,7 +104,7 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room);
 
-
+        preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
         make_btn = findViewById(R.id.make);
         join_btn = findViewById(R.id.join);
         textView = findViewById(R.id.text);
@@ -69,7 +116,12 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
         user_code = firebaseAuth.getCurrentUser().getUid();
         textView.setText(user_code);
 
+        room_chk();
+
+
+
         find_name();
+
 
     }
 
