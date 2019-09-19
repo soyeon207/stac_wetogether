@@ -28,7 +28,7 @@ public class add_dialog extends Dialog {
 
     private ImageView exit_btn;
     private View.OnClickListener exit_listner;
-    private Spinner spinner;
+    private Spinner spinner,p_spinner;
 
     SharedPreferences preferences;
 
@@ -38,10 +38,27 @@ public class add_dialog extends Dialog {
     ArrayList<String> list= new ArrayList<>();
     ArrayAdapter<String> adapter;
 
+    ArrayList<String> list_p = new ArrayList<>();
+    ArrayAdapter<String> adapter_p;
+
     public add_dialog(@NonNull Context context, View.OnClickListener exit_listner) {
         super(context);
 
         SharedPreferences s = context.getSharedPreferences("SAVE",Context.MODE_PRIVATE);
+
+        mdatabaseRef.child("room").child(s.getString("invitecode","")).child(("place")).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot message:dataSnapshot.getChildren()){
+                    list_p.add(message.getKey());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
         mdatabaseRef.child("room").child(s.getString("invitecode","")).child("user").addValueEventListener(new ValueEventListener() {
@@ -68,10 +85,25 @@ public class add_dialog extends Dialog {
     public void List(){ // 사람 리스트를 불러온다
 
         adapter = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,list);
+        adapter_p = new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,list_p);
 
         spinner = findViewById(R.id.spinner);
-        spinner.setAdapter(adapter);
+        p_spinner = findViewById(R.id.p_spinner);
 
+        spinner.setAdapter(adapter);
+        p_spinner.setAdapter(adapter_p);
+
+        p_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -101,6 +133,7 @@ public class add_dialog extends Dialog {
 
         exit_btn = findViewById(R.id.add_close);
         spinner = findViewById(R.id.spinner);
+        p_spinner = findViewById(R.id.p_spinner);
 
         exit_btn.setOnClickListener(exit_listner);
     }

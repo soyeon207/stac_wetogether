@@ -52,31 +52,44 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
             >
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
 
-                />
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
 
-            <Spinner
-                android:id="@+id/p_spinner"
-                android:layout_width="wrap_content"
+                    />
+
+                <Spinner
+                    android:id="@+id/p_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                />
-
-
+                android:orientation="horizontal"
+                >
             <EditText
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="15dp"
-                android:hint="날짜"
+                android:hint="시간"
                 />
 
             <EditText
@@ -87,7 +100,7 @@
                 android:hint="할일"
                 />
         </LinearLayout>
-
+        </LinearLayout>
        <LinearLayout
            android:layout_marginTop="40dp"
            android:layout_width="wrap_content"
