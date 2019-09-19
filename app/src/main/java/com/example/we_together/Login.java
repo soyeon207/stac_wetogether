@@ -36,6 +36,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     String email,pwd;
     ProgressBar progressBar;
 
+    FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
+    DatabaseReference mdatabaseRef = mdatabase.getReference();
+
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
@@ -43,7 +46,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         progressBar = findViewById(R.id.login_progress);
         progressBar.setVisibility(View.INVISIBLE);

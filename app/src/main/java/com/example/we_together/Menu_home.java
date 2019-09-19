@@ -57,6 +57,7 @@ public class Menu_home extends Fragment {
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
+
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private ChildEventListener mChild;
