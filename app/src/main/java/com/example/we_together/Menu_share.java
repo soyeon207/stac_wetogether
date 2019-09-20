@@ -40,11 +40,7 @@ public class Menu_share extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-
         rootView = inflater.inflate(R.layout.activity_menu_share, container, false);
-
-
 
         day1 = rootView.findViewById(R.id.day1);
         day2 = rootView.findViewById(R.id.day2);
@@ -84,7 +80,12 @@ public class Menu_share extends Fragment implements View.OnClickListener{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 adapter.clear();
                 for(DataSnapshot message:dataSnapshot.getChildren()){
+
                     String value = message.getValue().toString();
+                    String[] words = value.split("\\s");
+
+
+
                     Array.add(value);
                     adapter.add(value);
                 }

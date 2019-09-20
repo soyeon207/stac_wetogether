@@ -164,8 +164,8 @@ public class add_dialog extends Dialog {
                 if(p_value.equals(""))
                     Toast.makeText(getContext(),"사람을 설정해주세요",Toast.LENGTH_LONG).show();
 
-//                else if(p_value2.equals(""))
-//                    Toast.makeText(getContext(),"위치를 설정해주세요",Toast.LENGTH_LONG).show();
+                else if(p_value2.equals(""))
+                    Toast.makeText(getContext(),"위치를 설정해주세요",Toast.LENGTH_LONG).show();
 
                 else if(d_do==null)
                     Toast.makeText(getContext(),"시간을 설정해주세요",Toast.LENGTH_LONG).show();
@@ -174,15 +174,12 @@ public class add_dialog extends Dialog {
                     Toast.makeText(getContext(),"할일을 설정해주세요",Toast.LENGTH_LONG).show();
 
                 else {
-                    value = p_value+" " +d_do.getText()+" "+d_time.getText();
+                    value = p_value+" " +p_value2+" "+d_do.getText()+" "+d_time.getText();
                     check(ch1,"mon",value); check(ch2,"tue",value); check(ch3,"wed",value); check(ch4,"thu",value);
                     check(ch5,"fri",value); check(ch6,"sat",value); check(ch7,"sun",value);
 
                     Toast.makeText(getContext(),"값이 정상적으로 입력되었습니다",Toast.LENGTH_LONG).show();
                 }
-
-
-
 
             }
         });

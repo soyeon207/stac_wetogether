@@ -9,13 +9,12 @@
     tools:context="com.example.we_together.Menu_share">
 
     <LinearLayout
-
-        android:layout_marginTop="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_weight="1"
         >
+
         <TextView
             android:id="@+id/day1"
             android:textColor="@color/unchecked_text"
@@ -80,20 +79,32 @@
             android:layout_height="wrap_content"
             android:text="@string/sun"
             />
-
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_marginTop="10dp"
 
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        android:layout_marginRight="20dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="오늘의 가사분담은 ?"
+
+            />
         <ListView
+            android:layout_marginTop="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/listview"
             />
 
     </LinearLayout>
-
 
 </LinearLayout>

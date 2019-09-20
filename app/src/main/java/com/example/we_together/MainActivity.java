@@ -157,7 +157,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.drawer_setting) {
 
         } else if (id == R.id.drawer_logout) {
-            function();
             pref2 = getSharedPreferences("SAVE", MODE_PRIVATE);
             mdatabaseRef.child("room").child(pref2.getString("invitecode","")).child("user").addValueEventListener(new ValueEventListener() {
                 @Override
