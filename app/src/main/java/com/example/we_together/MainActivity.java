@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.drawer_setting) {
 
         } else if (id == R.id.drawer_logout) {
-
+            function();
             pref2 = getSharedPreferences("SAVE", MODE_PRIVATE);
             mdatabaseRef.child("room").child(pref2.getString("invitecode","")).child("user").addValueEventListener(new ValueEventListener() {
                 @Override
@@ -235,6 +235,7 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+
     private View.OnClickListener exit_listner = new View.OnClickListener(){
         public void onClick(View v){
             inviteDialog.dismiss();
@@ -246,6 +247,7 @@ public class MainActivity extends AppCompatActivity
             add_dialog.dismiss();
         }
     };
+
 
     @Override
     public void onClick(View view) {

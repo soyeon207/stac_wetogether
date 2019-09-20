@@ -85,6 +85,7 @@
                 android:orientation="horizontal"
                 >
             <EditText
+                android:id="@+id/d_time"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -93,6 +94,7 @@
                 />
 
             <EditText
+                android:id="@+id/d_do"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -110,6 +112,7 @@
            >
 
            <CheckBox
+               android:id="@+id/ch1"
                android:textColor="@color/MainColor"
                android:button="@null"
                android:textAlignment="center"
@@ -120,64 +123,64 @@
                />
 
            <CheckBox
-               android:textColor="@color/MainColor"
-               android:button="@null"
-               android:textAlignment="center"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+               android:id="@+id/ch2"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:button="@null"
+               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
                android:text="@string/tue"
-               />
+               android:textAlignment="center"
+               android:textColor="@color/MainColor" />
 
            <CheckBox
-               android:textColor="@color/MainColor"
-               android:button="@null"
-               android:textAlignment="center"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+               android:id="@+id/ch3"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:button="@null"
+               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
                android:text="@string/wed"
-               />
+               android:textAlignment="center"
+               android:textColor="@color/MainColor" />
 
            <CheckBox
-               android:textColor="@color/MainColor"
-               android:button="@null"
-               android:textAlignment="center"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+               android:id="@+id/ch4"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:button="@null"
+               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
                android:text="@string/thu"
-               />
+               android:textAlignment="center"
+               android:textColor="@color/MainColor" />
 
            <CheckBox
-               android:textColor="@color/MainColor"
-               android:button="@null"
-               android:textAlignment="center"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+               android:id="@+id/ch5"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:button="@null"
+               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
                android:text="@string/fri"
-               />
+               android:textAlignment="center"
+               android:textColor="@color/MainColor" />
 
            <CheckBox
-               android:textColor="@color/MainColor"
-               android:button="@null"
-               android:textAlignment="center"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+               android:id="@+id/ch6"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:button="@null"
+               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
                android:text="@string/sat"
-               />
+               android:textAlignment="center"
+               android:textColor="@color/MainColor" />
 
            <CheckBox
-               android:textColor="@color/MainColor"
-               android:button="@null"
-               android:textAlignment="center"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+               android:id="@+id/ch7"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
+               android:button="@null"
+               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
                android:text="@string/sun"
-               />
+               android:textAlignment="center"
+               android:textColor="@color/MainColor" />
 
        </LinearLayout>
 
