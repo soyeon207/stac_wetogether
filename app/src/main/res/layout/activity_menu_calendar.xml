@@ -6,9 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Menu_calendar">
 
-    <TextView
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="calendar"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        app:mcv_showOtherDates="all"
+        app:mcv_selectionColor="@color/MainColor"
         />
 </LinearLayout>
