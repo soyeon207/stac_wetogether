@@ -158,12 +158,12 @@
                 >
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btn"
                     android:textColor="#ffffff"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/rg_button"
-                    android:text="방만들기" />
+                    android:text="방 만들기" />
             </LinearLayout>
 
             <LinearLayout
