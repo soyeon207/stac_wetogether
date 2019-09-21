@@ -81,6 +81,7 @@ public class join2 extends AppCompatActivity implements View.OnClickListener{
                             finish(); // 이 창을 닫고
                             progressBar.setVisibility(View.INVISIBLE);
                             startActivity(new Intent(getApplication(),Room.class));
+
                             databaseReference.child("users").child(firebaseAuth.getUid()).child("name").push().setValue(name);
 
                             SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);

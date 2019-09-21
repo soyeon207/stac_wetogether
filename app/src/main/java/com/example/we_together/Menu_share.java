@@ -82,9 +82,6 @@ public class Menu_share extends Fragment implements View.OnClickListener{
                 for(DataSnapshot message:dataSnapshot.getChildren()){
 
                     String value = message.getValue().toString();
-                    String[] words = value.split("\\s");
-
-
 
                     Array.add(value);
                     adapter.add(value);
