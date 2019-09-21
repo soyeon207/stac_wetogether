@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,10 +39,9 @@ public class Menu_calendar extends Fragment {
 
     private MaterialCalendarView materialCalendarView;
     private TextView text_cal;
-    private Button cal_btn;
-    private EditText edit_cal;
     private ListView listView;
 
+    private ImageView cal_img;
     private ArrayList<String> event_arr = new ArrayList<String>();
     private SharedPreferences pref;
     private View rootView;
@@ -49,32 +49,29 @@ public class Menu_calendar extends Fragment {
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private List<String> Array = new ArrayList<String>();
+    private event_dialog event_dialog;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         rootView = inflater.inflate(R.layout.activity_menu_calendar, container, false);
 
-        edit_cal = rootView.findViewById(R.id.edit_cal);
         materialCalendarView = rootView.findViewById(R.id.cal);
         text_cal = rootView.findViewById(R.id.text_cal);
-        cal_btn = rootView.findViewById(R.id.cal_btn);
+        cal_img = rootView.findViewById(R.id.cal_img);
+
+        cal_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                event_dialog = new event_dialog(getContext(),(month+day));
+                event_dialog.show();
+            }
+        });
 
         Context context = getContext();
         pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
         calendar_dot();
-        cal_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                calendar_dot();
-                String date = month+day;
-                databaseReference.child("room").child(pref.getString("invitecode","")).child("event").child(date).push().setValue(edit_cal.getText().toString());
-
-                edit_cal.setText("");
-                Toast.makeText(getContext(),"이벤트가 입력되었습니다",Toast.LENGTH_SHORT).show();
-            }
-        });
 
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
             @Override

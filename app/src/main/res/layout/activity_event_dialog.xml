@@ -49,6 +49,7 @@
             android:layout_weight="1"
             >
             <EditText
+                android:id="@+id/event_edit"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:layout_width="match_parent"
@@ -70,6 +71,7 @@
             >
 
             <Button
+                android:id="@+id/event_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginRight="50dp"

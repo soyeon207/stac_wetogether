@@ -40,7 +40,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:orientation="horizontal"
             >
             <LinearLayout
@@ -64,6 +64,7 @@
                 android:layout_weight="1"
                 >
                 <ImageView
+                    android:id="@+id/cal_img"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/add"

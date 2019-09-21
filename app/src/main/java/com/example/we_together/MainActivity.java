@@ -254,7 +254,6 @@ public class MainActivity extends AppCompatActivity
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.add_image:
-                Log.e("a","a");
                 add_dialog = new add_dialog(this,exit_listner2);
                 add_dialog.show();
                 break;
