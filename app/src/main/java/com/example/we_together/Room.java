@@ -122,6 +122,7 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_room);
 
         preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+
         make_btn = findViewById(R.id.make);
         join_btn = findViewById(R.id.join);
         textView = findViewById(R.id.text);
@@ -131,12 +132,8 @@ public class Room extends AppCompatActivity implements View.OnClickListener{
 
         firebaseAuth = firebaseAuth.getInstance();
         user_code = firebaseAuth.getCurrentUser().getUid();
-        textView.setText(user_code);
 
         room_chk();
-
-
-
         find_name();
 
 
