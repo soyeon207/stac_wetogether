@@ -18,12 +18,8 @@
             android:layout_weight="0.8"
             android:orientation="horizontal"
             >
-            <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:src="@drawable/backback"-->
-            <!--/>-->
             <LinearLayout
+                android:id="@+id/back_linear2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -117,8 +113,7 @@
                 android:layout_weight="0.4"
                 >
                 <EditText
-                    android:textColor="#d7d7d7"
-                    android:textSize="15sp"
+                    android:textColor="#4c4c4c"                     android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="방 이름 입력"

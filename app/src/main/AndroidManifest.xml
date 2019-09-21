@@ -33,8 +33,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".JoinRoom" />
-        <activity android:name=".MakeRoom" />
+        <activity android:name=".JoinRoom"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity android:name=".MakeRoom"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".Room"
             android:theme="@style/AppTheme.NoActionBar"

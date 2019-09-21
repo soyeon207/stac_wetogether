@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 
 import com.google.firebase.database.DataSnapshot;
@@ -24,6 +26,7 @@ public class JoinRoom extends AppCompatActivity {
     String invite_code,room_name,code_name;
     FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
     DatabaseReference mdatabaseRef = mdatabase.getReference();
+    LinearLayout back_linear;
 
     FirebaseDatabase mdatabase2 = FirebaseDatabase.getInstance();
     DatabaseReference mdatabaseRef2 = mdatabase2.getReference();
@@ -38,6 +41,16 @@ public class JoinRoom extends AppCompatActivity {
 
         edit_code = findViewById(R.id.code);
         btn_code = findViewById(R.id.button);
+        back_linear = findViewById(R.id.back_linear);
+
+        back_linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+
 
         btn_code.setOnClickListener(new View.OnClickListener() {
             @Override

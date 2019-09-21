@@ -19,15 +19,11 @@
             android:layout_weight="0.8"
             android:orientation="horizontal"
             >
-            <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:src="@drawable/backback"-->
-            <!--/>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:id="@+id/back_linear"
                 >
 
                 <ImageView
@@ -118,7 +114,7 @@
                 android:layout_weight="0.4"
                 >
                 <EditText
-                    android:textColor="#d7d7d7"
+                    android:textColor="#4c4c4c"
                     android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

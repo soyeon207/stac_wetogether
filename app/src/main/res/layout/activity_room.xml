@@ -142,7 +142,7 @@
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:background="@drawable/rg_button"
-                                                android:text="방 들어가기기"
+                                                android:text="방 들어가기"
                                                 android:textColor="#ffffff"
                                                 android:textSize="15sp" />
 

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -27,16 +29,26 @@ MakeRoom extends AppCompatActivity implements View.OnClickListener{
     FirebaseAuth firebaseAuth;
     String room;
     String invitecode;
+    LinearLayout back_linear2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_room);
 
+
+        back_linear2 = findViewById(R.id.back_linear2);
         button = findViewById(R.id.btn);
         edit_roomname = findViewById(R.id.roomname);
         button.setOnClickListener(this);
         edit_roomname.setOnClickListener(this);
+
+        back_linear2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         firebaseAuth = firebaseAuth.getInstance();
     }
