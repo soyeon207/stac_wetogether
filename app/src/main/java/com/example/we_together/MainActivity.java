@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity
         imageView = findViewById(R.id.add_image);
 
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity
 
         imageView.setOnClickListener(this);
     }
+
 
 
     @Override

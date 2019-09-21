@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         >
+
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
             android:src="@drawable/logo_white" />
 
         <TextView
