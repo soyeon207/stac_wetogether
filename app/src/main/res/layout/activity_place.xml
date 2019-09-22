@@ -8,8 +8,25 @@
     tools:context=".placeActivity">
 
 
+<LinearLayout
+    android:layout_weight="8"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    android:background="@drawable/home_layout_radius"
+    android:layout_margin="20dp"
+    android:padding="30dp"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="집 안의 장소를 선택하세요!"
+        />
 
     <CheckBox
+        android:layout_marginTop="20dp"
         android:id="@+id/checkBox2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,9 +87,11 @@
         </android.support.design.chip.ChipGroup>-->
     <Button
         android:id="@+id/addButton"
-        android:layout_width="match_parent"
+
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="추가하기"
+        android:text="항목 추가"
+        android:background="@drawable/bg_dialog_radius"
 
         />
 
@@ -93,7 +112,18 @@
         </LinearLayout>
     </HorizontalScrollView>
 
+
+</LinearLayout>
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:padding="30dp"
+        android:layout_marginTop="-10dp"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <Button
+        android:background="@drawable/background_gradient"
         android:id="@+id/goStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,6 +131,6 @@
         android:text="시작하기"
 
         />
-
+    </LinearLayout>
 
 </LinearLayout>

@@ -11,7 +11,7 @@
 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Today"
+        android:text="TODAY"
         android:layout_margin="15dp"
         android:textSize="25dp"
         android:textStyle="bold"
@@ -21,11 +21,11 @@
 
     <TextView
 
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="18dp"
         android:layout_toRightOf="@+id/today"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="13dp"
+        android:textSize="25dp"
         android:gravity="left"
         android:textStyle="bold"
         android:id="@+id/today_tv"
@@ -33,6 +33,7 @@
         />
 
     <TextView
+        android:padding="5dp"
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,6 +66,7 @@
 
 
             <LinearLayout
+                android:padding="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -77,6 +79,7 @@
 
 
         <LinearLayout
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -90,6 +93,9 @@
         </LinearLayout>
 
         <LinearLayout
+
+            android:padding="5dp"
+            android:background="@drawable/home_layout_radius"
             android:layout_margin="3dp"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -102,7 +108,7 @@
                 android:layout_height="38dp"
                 android:layout_alignLeft="@+id/today"
                 android:layout_alignStart="@+id/today"
-                android:text="EVENT"
+                android:text="오늘의 이벤트"
                 android:textColor="#70aae4"
                 android:textSize="20sp"
                 android:textStyle="bold" />

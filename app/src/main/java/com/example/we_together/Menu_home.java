@@ -75,13 +75,18 @@ public class Menu_home extends Fragment {
 
         long now = System.currentTimeMillis();
         Date date = new Date(now);
-        date.setDate(date.getDate() + 1);
+        date.setDate(date.getDate());
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일");
         String getTime = sdf.format(date);
         tv.setText(getTime);
 
-        String caldate = "613"; //이 부분 원래 String.valueOf(date.getDay()) 이거 였는데 16이 프린트 안되고 2가 프린트 됨 ㅠ
+        SimpleDateFormat s1 = new SimpleDateFormat("M");
+        SimpleDateFormat s2 = new SimpleDateFormat("dd");
+        String a1 = s1.format(date);
+        String a2 = s2.format(date);
+
+        String caldate = a1+a2; //이 부분 원래 String.valueOf(date.getDay()) 이거 였는데 16이 프린트 안되고 2가 프린트 됨 ㅠ
         Log.v("check",caldate);
 
         //
@@ -102,13 +107,13 @@ public class Menu_home extends Fragment {
         listView2.setAdapter(adapter2);
 
         switch(weekDay) {
-            case "Monday":Day = "월요일"; break;
-            case "Tuesday":Day ="화요일";break;
-            case "Wednesday":Day = "수요일";break;
-            case "Thursday":Day = "목요일";break;
-            case "Friday":Day = "금요일";break;
-            case "Saturday":Day = "토요일"; break;
-            case "Sunday": Day = "일요일"; break;
+            case "Monday":Day = "mon"; break;
+            case "Tuesday":Day ="tue";break;
+            case "Wednesday":Day = "wed";break;
+            case "Thursday":Day = "thu";break;
+            case "Friday":Day = "fri";break;
+            case "Saturday":Day = "sat"; break;
+            case "Sunday": Day = "sun"; break;
             default:Day = weekDay;
         }
 
@@ -165,6 +170,7 @@ public class Menu_home extends Fragment {
                     }
                 });
 
+
             }
         }
 
@@ -175,6 +181,7 @@ public class Menu_home extends Fragment {
         btn[0].setWidth(66);
         btn[0].setTextSize(11);
         btn[0].setId(0);
+        btn[0].setBackgroundResource(R.drawable.cal_button);
         linearLayout.addView(btn[0]);
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,6 +201,7 @@ public class Menu_home extends Fragment {
                 btn[i].setWidth(66);
                 btn[i].setTextSize(11);
                 btn[i].setId(i);
+                btn[i].setBackgroundResource(R.drawable.cal_button);
                 linearLayout.addView(btn[i]);
 
 
@@ -267,6 +275,25 @@ public class Menu_home extends Fragment {
         });
 */
 
+        mReference = mDatabase.getReference("room");
+        mReference.child(ccode).child("event").child(caldate).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                adapter2.clear();
+                for (DataSnapshot messageData : dataSnapshot.getChildren()) {
+                    String msg2 = messageData.getValue().toString();
+                    Array2.add(msg2);
+                    adapter2.add(msg2);
+                }
+                adapter2.notifyDataSetChanged();
+                listView.setSelection(adapter2.getCount() - 1);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
 
