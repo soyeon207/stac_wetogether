@@ -13,17 +13,21 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 public class event_dialog extends Dialog {
 
     private EditText event_edit;
     private Button event_btn;
     String date;
+    MaterialCalendarView mvie;
+    Menu_calendar menu_calendar;
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
-    public event_dialog(@NonNull Context context,String date) {
+    public event_dialog(@NonNull Context context, String date, MaterialCalendarView mview) {
         super(context);
+        this.mvie = mview;
         this.date = date;
     }
 
@@ -32,6 +36,7 @@ public class event_dialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_dialog);
 
+        menu_calendar = new Menu_calendar();
         event_edit = findViewById(R.id.event_edit);
         event_btn = findViewById(R.id.event_btn);
 
@@ -41,9 +46,11 @@ public class event_dialog extends Dialog {
                 Context context = getContext();
 
                 SharedPreferences pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
-                databaseReference.child("room").child(pref.getString("invitecode","")).child("event").child(date).push().setValue(event_edit.getText().toString());
+                String invite = pref.getString("invitecode","");
+                databaseReference.child("room").child(invite).child("event").child(date).push().setValue(event_edit.getText().toString());
 
                 event_edit.setText("");
+                menu_calendar.check(invite,mvie);
                 dismiss();
             }
         });

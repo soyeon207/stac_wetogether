@@ -1,11 +1,13 @@
 package com.example.we_together;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 
@@ -40,6 +42,7 @@ public class Menu_calendar extends Fragment {
     private MaterialCalendarView materialCalendarView;
     private TextView text_cal;
     private ListView listView;
+    private String invite;
 
     private ImageView cal_img;
     private ArrayList<String> event_arr = new ArrayList<String>();
@@ -50,6 +53,10 @@ public class Menu_calendar extends Fragment {
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
     private List<String> Array = new ArrayList<String>();
     private event_dialog event_dialog;
+
+    public void Menu_calendar(){
+
+    }
 
     @Nullable
     @Override
@@ -64,13 +71,14 @@ public class Menu_calendar extends Fragment {
         cal_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                event_dialog = new event_dialog(getContext(),(month+day));
+                event_dialog = new event_dialog(getContext(),(month+day),materialCalendarView);
                 event_dialog.show();
             }
         });
 
         Context context = getContext();
         pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
+        invite = pref.getString("invitecode","");
         calendar_dot();
 
         materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
@@ -92,7 +100,7 @@ public class Menu_calendar extends Fragment {
                 listView.setAdapter(adapter);
 
                 String date2 = month+day;
-                databaseReference.child("room").child(pref.getString("invitecode","")).child("event").child(date2).addValueEventListener(new ValueEventListener() {
+                databaseReference.child("room").child(invite).child("event").child(date2).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         adapter.clear();
@@ -118,7 +126,8 @@ public class Menu_calendar extends Fragment {
     }
 
     public void calendar_dot() {
-        databaseReference.child("room").child(pref.getString("invitecode","")).child("event").addValueEventListener(new ValueEventListener() {
+
+        databaseReference.child("room").child(invite).child("event").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot messageData : dataSnapshot.getChildren()) {
@@ -161,8 +170,19 @@ public class Menu_calendar extends Fragment {
         @Override
         protected void onPostExecute(@NonNull List<CalendarDay> calendarDays) {
             super.onPostExecute(calendarDays);
-
+            Log.e("size",String.valueOf(calendarDays.size()));
             materialCalendarView.addDecorator(new EventDecorator(Color.parseColor("#2f4c9b"), calendarDays));
         }
+    }
+
+    public void check(String invite,MaterialCalendarView mview){
+        this.invite=invite;
+
+        materialCalendarView = mview;
+        //Log.e("invite",invite);
+
+        //materialCalendarView.refreshDrawableState();
+
+        calendar_dot();
     }
 }
