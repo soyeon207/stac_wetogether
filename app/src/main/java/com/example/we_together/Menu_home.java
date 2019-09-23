@@ -151,7 +151,7 @@ public class Menu_home extends Fragment {
 
 
                 mReference = mDatabase.getReference("room");
-                mReference.child(ccode).child("place").child(value).child(Day).addValueEventListener(new ValueEventListener() {
+                mReference.child(ccode).child("day").child(Day).child(Day).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //adapter.clear();
