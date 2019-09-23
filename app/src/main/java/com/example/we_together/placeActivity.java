@@ -3,16 +3,19 @@ package com.example.we_together;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -157,6 +160,7 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                         btn[i].setWidth(66);
                         btn[i].setTextSize(11);
                         btn[i].setId(i);
+                        btn[i].setBackgroundResource(R.drawable.cal_button);
                         linearLayout.addView(btn[i]);
 
 
@@ -220,15 +224,38 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                         Log.d("ㅇㅇㅇㅇ","Get json : " + value);
                         /*databaseReference.child("room").child(ccode).child("place").child(value).push().setValue(value);*/
                         databaseReference.child("room").child(ccode).child("place").child(value).push().setValue(value);
+                        startActivity(new Intent(placeActivity.this, MainActivity.class));
+                        finish();
                     }
+                }else {
+                    show();
                 }
 
-                startActivity(new Intent(placeActivity.this, MainActivity.class));
-                finish();
+
             }
         });
-    }
 
+
+    }
+    void show()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("장소를 선택하세요");
+        builder.setMessage("우리 집 안의 장소를 선택하세요!");
+        builder.setPositiveButton("예",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"예를 선택했습니다.",Toast.LENGTH_LONG).show();
+                    }
+                });
+        builder.setNegativeButton("아니오",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),"아니오를 선택했습니다.",Toast.LENGTH_LONG).show();
+                    }
+                });
+        builder.show();
+    }
 
     private void setStringArrayPref(Context context, String key, ArrayList<String> values){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
