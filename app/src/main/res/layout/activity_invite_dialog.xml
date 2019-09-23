@@ -66,6 +66,7 @@
             android:textColor="@color/main_color"
             />
         <Button
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="문자로 공유"

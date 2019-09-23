@@ -3,23 +3,49 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
+    android:gravity="center_horizontal"
     >
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/l_place"
+        android:text="화장실"
+        android:textSize="20dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:background="@drawable/listview"
+        android:textColor="#757575"
         />
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="   "
+        />
+    <TextView
+        android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/l_name"
-        android:textColor="@color/main_color"
+        android:text="엄마"
+
+        android:textColor="#3D3D3D"
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text=" / "
+        />
+
+    <TextView
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/l_housework"
-        android:textColor="#565656"
+        android:textColor="@color/MainColor"
+        android:text="화분에 물주기"
         />
 </LinearLayout>
