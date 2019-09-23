@@ -249,7 +249,7 @@ public class Menu_home extends Fragment {
                         for (DataSnapshot messageData : dataSnapshot.getChildren()) {
                             String msg2 = messageData.getValue().toString();
                             String[] values = msg2.split("\\s");
-                            String v2 = values[0]+" / "+values[3]+" "+values[2];
+                            String v2 = values[0]+"  /  "+values[3]+" "+values[2];
                             Array.add(v2);
                             adapter.add(v2);
                         }
@@ -306,7 +306,7 @@ public class Menu_home extends Fragment {
 
                                     Log.e("a",values[1]);
                                     if(values[1].equals(place)){
-                                        String v2 = values[0]+" / "+values[3]+" "+values[2];
+                                        String v2 = values[0]+"  /  "+values[3]+" "+values[2];
                                         Array.add(v2);
                                         adapter.add(v2);
                                     }
