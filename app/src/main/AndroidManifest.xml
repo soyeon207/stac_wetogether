@@ -6,10 +6,10 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -20,7 +20,8 @@
         <activity android:name=".Menu_community" />
         <activity android:name=".Menu_calendar" />
         <activity android:name=".Menu_share" />
-        <activity android:name=".UploadMain" />
+        <activity android:name=".UploadMain"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Menu_home" />
         <activity
             android:name=".MainActivity"

@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.drawer_calendar) {
             // Handle the camera action
         } else if (id == R.id.drawer_invitecode) {
-            inviteDialog = new inviteDialog(this,exit_listner);
+            inviteDialog = new inviteDialog(this,exit_listner,invite_listner);
             inviteDialog.show();
         } else if (id == R.id.drawer_community) {
 
@@ -192,8 +192,6 @@ public class MainActivity extends AppCompatActivity
 
 
     public void function(){
-        Log.e("실행됨","실행됨");
-
         SharedPreferences.Editor editor2 = pref2.edit();
         editor2.clear();
         editor2.commit();
@@ -243,6 +241,23 @@ public class MainActivity extends AppCompatActivity
             inviteDialog.dismiss();
         }
     };
+    private View.OnClickListener invite_listner=new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+
+            intent.setType("text/plain");
+            SharedPreferences preferences = getSharedPreferences("SAVE",MODE_PRIVATE);
+            String text = preferences.getString("invitecode","");
+            intent.putExtra(Intent.EXTRA_TEXT, text);
+
+            Intent chooser = Intent.createChooser(intent, "초대코드 공유하기");
+            startActivity(chooser);
+
+
+        }
+    };
+
 
     private View.OnClickListener exit_listner2 = new View.OnClickListener(){
         public void onClick(View v){
