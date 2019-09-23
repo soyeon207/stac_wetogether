@@ -45,9 +45,6 @@ public class Menu_calendar extends Fragment {
     private ListView listView;
     private String invite;
 
-    ListView listView2;
-    ListViewAdapter adapter2;
-
     private ImageView cal_img;
     private ArrayList<String> event_arr = new ArrayList<String>();
     private SharedPreferences pref;
@@ -98,29 +95,28 @@ public class Menu_calendar extends Fragment {
 
 ///////////////////////////////////////////////////////////////////
 
+                ArrayList<String> midList = new ArrayList<String>();
+                listView = rootView.findViewById(R.id.list_cal);
 
-
-                adapter2 = new ListViewAdapter();
-
-                listView2 = rootView.findViewById(R.id.list_cal);
-                listView2.setAdapter(adapter2);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,midList);
+                listView.setAdapter(adapter);
 
                 String date2 = month+day;
 
                 databaseReference.child("room").child(invite).child("event").child(date2).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-
+                        adapter.clear();
                         for(DataSnapshot message:dataSnapshot.getChildren()){
                             String value = message.getValue().toString();
 
                             String[] values = value.split("\\s");
-
-                            adapter2.addItem(values[0],values[1],values[2]+ " "+values[3]);
+                            Array.add(value);
+                            adapter.add(value);
 
                         }
-//                        adapter2.notifyDataSetChanged();
-//                        listView2.setSelection(adapter2.getCount()-1);
+                        adapter.notifyDataSetChanged();
+                        listView.setSelection(adapter.getCount()-1);
                     }
 
                     @Override

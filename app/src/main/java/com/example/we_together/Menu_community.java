@@ -74,9 +74,6 @@ Context context;
         String ccode = pref.getString("invitecode","");
 
 
-
-
-
         mDBListener = mDatabaseRef.child(ccode).child("upload").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

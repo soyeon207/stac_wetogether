@@ -39,7 +39,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.9"
+            android:layout_weight="0.6"
             >
             <TextView
                 android:layout_width="match_parent"
@@ -58,134 +58,130 @@
             ></LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:layout_weight="8"
-        android:background="@drawable/home_layout_radius"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:padding="30dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="집 안의 장소를 선택하세요!" />
-
-        <CheckBox
-            android:id="@+id/checkBox2"
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="거실" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_weight="8"
+            android:paddingBottom="-5dp"
+            android:paddingTop="-5dp"
+            android:background="@drawable/home_layout_radius"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="30dp">
 
-        <CheckBox
-            android:id="@+id/checkBox3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="화장실" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="집 안의 장소를 선택하세요!" />
 
-        <CheckBox
-            android:id="@+id/checkBox4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="안방" />
-
-        <CheckBox
-            android:id="@+id/checkBox5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="세탁실" />
-
-        <CheckBox
-            android:id="@+id/checkBox6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="부엌" />
-
-        <CheckBox
-            android:id="@+id/checkBox7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="베란다" />
-
-        <CheckBox
-            android:id="@+id/checkBox8"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="방1" />
-
-        <CheckBox
-            android:id="@+id/checkBox9"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="방2" />
-
-        <CheckBox
-            android:id="@+id/checkBox10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="방3" />
-
-        <CheckBox
-            android:id="@+id/checkBox11"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="창고" />
-
-
-        <!--    <android.support.design.chip.ChipGroup
-            android:id="@+id/chip_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:chipSpacing="10dp">
-        </android.support.design.chip.ChipGroup>-->
-        <Button
-            android:id="@+id/addButton"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:background="@drawable/bg_dialog_radius"
-            android:text="항목 추가"
-
-            />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <LinearLayout
-                android:id="@+id/linear1"
+            <CheckBox
+                android:id="@+id/checkBox2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:text="거실" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="화장실" />
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="안방" />
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="세탁실" />
+
+            <CheckBox
+                android:id="@+id/checkBox6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="부엌" />
+
+            <CheckBox
+                android:id="@+id/checkBox7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="베란다" />
+
+            <CheckBox
+                android:id="@+id/checkBox8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="방1" />
+
+            <CheckBox
+                android:id="@+id/checkBox9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="방2" />
 
 
-            </LinearLayout>
-        </HorizontalScrollView>
+
+            <!--    <android.support.design.chip.ChipGroup
+                android:id="@+id/chip_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:chipSpacing="10dp">
+            </android.support.design.chip.ChipGroup>-->
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:background="@drawable/bg_dialog_radius"
+                android:text="항목 추가"
+
+                />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linear1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
-        android:layout_margin="20dp"
-
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <Button
-        android:background="@drawable/background_gradient2"
-        android:id="@+id/goStart"
-        android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:text="시작하기"
+        <Button
+            android:background="@drawable/background_gradient2"
+            android:id="@+id/goStart"
+            android:textColor="#ffffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        />
+            android:text="시작하기"
+
+            />
     </LinearLayout>
 
 </LinearLayout>

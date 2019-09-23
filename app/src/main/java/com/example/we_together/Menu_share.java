@@ -35,6 +35,10 @@ public class Menu_share extends Fragment implements View.OnClickListener{
     private TextView save_text;
     private ListView listView;
 
+
+    ListView listView2;
+    ListViewAdapter adapter2;
+
     List<String> Array = new ArrayList<String>();
 
     @Override
@@ -69,25 +73,25 @@ public class Menu_share extends Fragment implements View.OnClickListener{
         Context context = getActivity();
         SharedPreferences sp = context.getSharedPreferences( "SAVE", Context.MODE_PRIVATE);
 
-        ArrayList<String> midList = new ArrayList<String>();
-        listView = rootView.findViewById(R.id.listview);
+        adapter2 = new ListViewAdapter();
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,midList);
-        listView.setAdapter(adapter);
+        listView2 = rootView.findViewById(R.id.listview);
+        listView2.setAdapter(adapter2);
 
         mdatabaseRef.child("room").child(sp.getString("invitecode","")).child("day").child(date).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                adapter.clear();
                 for(DataSnapshot message:dataSnapshot.getChildren()){
 
                     String value = message.getValue().toString();
 
-                    Array.add(value);
-                    adapter.add(value);
+                    String[] values = value.split("\\s");
+                    adapter2.addItem(values[0],values[1],values[2]+ " "+values[3]);
+
+
                 }
-                adapter.notifyDataSetChanged();
-                listView.setSelection(adapter.getCount()-1);
+                adapter2.notifyDataSetChanged();
+                listView2.setSelection(adapter2.getCount()-1);
             }
 
             @Override

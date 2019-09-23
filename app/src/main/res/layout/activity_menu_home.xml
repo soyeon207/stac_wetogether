@@ -7,52 +7,43 @@
     android:orientation="vertical"
     tools:context=".Menu_home">
 
-    <TextView
-
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TODAY"
-        android:layout_margin="15dp"
-        android:textSize="25dp"
-        android:textStyle="bold"
-
-        android:id="@+id/today"
-        />
-
-    <TextView
-
-        android:layout_marginTop="18dp"
-        android:layout_toRightOf="@+id/today"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:gravity="left"
-        android:textStyle="bold"
-        android:id="@+id/today_tv"
-        android:text="오늘 날짜"
-        />
+        android:id="@+id/li"
+        android:gravity="center"
+        >
 
-    <TextView
-        android:padding="5dp"
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/today"
-        android:layout_alignStart="@+id/today"
-        android:layout_below="@+id/today"
-        android:text="가사 일정"
-        android:textColor="#70aae4"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TODAY"
+            android:layout_margin="15dp"
+            android:textSize="25dp"
+            android:textStyle="bold"
+
+            android:id="@+id/today"
+            />
+
+        <TextView
+            android:layout_toRightOf="@+id/today"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:id="@+id/today_tv"
+            android:text="오늘 날짜"
+            />
+    </LinearLayout>
+
 
     <LinearLayout
 
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/today_tv"
-        android:layout_alignRight="@+id/today_tv"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/li"
         android:orientation="vertical">
 
         <HorizontalScrollView
@@ -76,10 +67,19 @@
 
         <LinearLayout
             android:padding="5dp"
+            android:background="@drawable/home_layout_radius"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:layout_weight="1">
-
+            <TextView
+                android:layout_marginLeft="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:text="오늘 할 일"
+                android:textColor="#101010"
+                android:textSize="20sp"
+                />
             <ListView
                 android:id="@+id/listviewmsg"
                 android:layout_width="match_parent"
@@ -102,12 +102,10 @@
                 android:layout_marginLeft="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:layout_alignLeft="@+id/today"
-                android:layout_alignStart="@+id/today"
                 android:text="오늘의 이벤트"
-                android:textColor="#70aae4"
+                android:textColor="#101010"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                />
             <ListView
                 android:id="@+id/lv2"
                 android:layout_width="match_parent"

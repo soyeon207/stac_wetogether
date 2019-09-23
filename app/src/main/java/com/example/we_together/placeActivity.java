@@ -50,8 +50,7 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
         ch6 = (CheckBox)findViewById(R.id.checkBox7);
         ch7 = (CheckBox)findViewById(R.id.checkBox8);
         ch8 = (CheckBox)findViewById(R.id.checkBox9);
-        ch9 = (CheckBox)findViewById(R.id.checkBox10);
-        ch10 = (CheckBox)findViewById(R.id.checkBox11);
+
         btn = findViewById(R.id.addButton);
         cnt=0;
         goStart = findViewById(R.id.goStart);
@@ -112,16 +111,7 @@ public class placeActivity extends AppCompatActivity /*implements CompoundButton
                         placeList.add((String) ch8.getText());
                     }
                 }
-                if(ch9.isChecked()){
-                    if(!placeList.contains((String)ch9.getText())) {
-                        placeList.add((String) ch9.getText());
-                    }
-                }
-                if(ch10.isChecked()){
-                    if(!placeList.contains((String)ch10.getText())) {
-                        placeList.add((String) ch10.getText());
-                    }
-                }
+
                 Button btn[] = new Button[placeList.size()];
                 if(cnt==0) {
                     int i=0;

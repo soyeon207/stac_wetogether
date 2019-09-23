@@ -45,7 +45,7 @@ public class Menu_home extends Fragment {
     private ListView listView;
     private ArrayAdapter<String> adapter;
     List<Object> Array = new ArrayList<>();
-
+    String caldate;
     private ListView listView2;
     private ArrayAdapter<String> adapter2;
     List<Object> Array2 = new ArrayList<>();
@@ -86,7 +86,7 @@ public class Menu_home extends Fragment {
         String a1 = s1.format(date);
         String a2 = s2.format(date);
 
-        String caldate = a1+a2; //이 부분 원래 String.valueOf(date.getDay()) 이거 였는데 16이 프린트 안되고 2가 프린트 됨 ㅠ
+        caldate = a1+a2; //이 부분 원래 String.valueOf(date.getDay()) 이거 였는데 16이 프린트 안되고 2가 프린트 됨 ㅠ
         Log.v("check",caldate);
 
         //
@@ -106,14 +106,17 @@ public class Menu_home extends Fragment {
         adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,new ArrayList<String>());
         listView2.setAdapter(adapter2);
 
+       Log.e("weekDay",weekDay);
+
         switch(weekDay) {
-            case "Monday":Day = "mon"; break;
-            case "Tuesday":Day ="tue";break;
-            case "Wednesday":Day = "wed";break;
-            case "Thursday":Day = "thu";break;
-            case "Friday":Day = "fri";break;
-            case "Saturday":Day = "sat"; break;
-            case "Sunday": Day = "sun"; break;
+            case "Monday": case "월요일":Day = "mon"; break;
+            case "Tuesday":case "화요일":Day ="tue";break;
+            case "Wednesday":case "수요일":Day = "wed";break;
+            case "Thursday":case "목요일":Day = "thu";break;
+            case "Friday":case "금요일":Day = "fri";break;
+            case "Saturday":case "토요일":Day = "sat"; break;
+            case "Sunday": case "일요일":Day = "sun"; break;
+
             default:Day = weekDay;
         }
 
@@ -132,36 +135,29 @@ public class Menu_home extends Fragment {
                 adapter.notifyDataSetChanged();
                 listView.setSelection(adapter.getCount() - 1);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
-
 */
-        ArrayList<String> list = getStringArrayPref(context,"pp");
-
-        if (list != null) {
-            placeList.clear();
-            for (String value : list) {
-                Log.d("ㅇㅇㅇㅇ","Get json : " + value);
-
-                placeList.add(value);
 
 
                 mReference = mDatabase.getReference("room");
-                mReference.child(ccode).child("day").child(Day).child(Day).addValueEventListener(new ValueEventListener() {
+                mReference.child(ccode).child("place").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         //adapter.clear();
+
+                        placeList.clear();
+
                         for (DataSnapshot messageData : dataSnapshot.getChildren()) {
-                            String msg2 = messageData.getValue().toString();
-                            Array.add(msg2);
-                            adapter.add(msg2);
+                            String msg2 = messageData.getKey();
+                            placeList.add(msg2);
+                            Log.e("msg2",msg2);
                         }
-                        adapter.notifyDataSetChanged();
-                        listView.setSelection(adapter.getCount() - 1);
+
+                        fun();
+
                     }
 
                     @Override
@@ -171,93 +167,20 @@ public class Menu_home extends Fragment {
                 });
 
 
-            }
-        }
-
-        linearLayout.removeAllViewsInLayout();
-        Button btn[] = new Button[placeList.size()+1];
-        btn[0] = new Button(context);
-        btn[0].setText("모두");
-        btn[0].setWidth(66);
-        btn[0].setTextSize(11);
-        btn[0].setId(0);
-        btn[0].setBackgroundResource(R.drawable.cal_button);
-        linearLayout.addView(btn[0]);
-        btn[0].setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("버튼","모두 버튼 누름 : " + 0);
-            }
-        });
-
-        int i=1;
-        if(i<=placeList.size()) {
-
-            for(final String place : placeList){
 
 
-                btn[i] = new Button(context);
-                btn[i].setText(place);
-                btn[i].setWidth(66);
-                btn[i].setTextSize(11);
-                btn[i].setId(i);
-                btn[i].setBackgroundResource(R.drawable.cal_button);
-                linearLayout.addView(btn[i]);
 
-
-                btn[i].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Button btn2= (Button)view;
-                        Log.d("버튼튼","버튼 누름 : "+btn2);
-
-                        SharedPreferences pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
-                        String ccode = pref.getString("invitecode","");
-
-
-                        mReference = mDatabase.getReference("room");
-                        mReference.child(ccode).child("place").child(place).child(Day).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                adapter.clear();
-                                Array.clear();
-                                for (DataSnapshot messageData : dataSnapshot.getChildren()) {
-                                    String msg2 = messageData.getValue().toString();
-                                    Array.add(msg2);
-                                    adapter.add(msg2);
-                                }
-                                adapter.notifyDataSetChanged();
-                                listView.setSelection(adapter.getCount() - 1);
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                    }
-                });
-                i++;
-            }
-            cnt++;
-        }
         //else{
 /*
             int i=0;
             linearLayout.removeAllViewsInLayout();
             for(String place : placeList){
-
-
-
                 btn[i] = new Button(context);
                 btn[i].setText(place);
                 btn[i].setWidth(66);
                 btn[i].setTextSize(11);
                 btn[i].setId(i);
                 linearLayout.addView(btn[i]);
-
-
                 i++;
             }
 */
@@ -286,7 +209,7 @@ public class Menu_home extends Fragment {
                     adapter2.add(msg2);
                 }
                 adapter2.notifyDataSetChanged();
-                listView.setSelection(adapter2.getCount() - 1);
+                listView2.setSelection(adapter2.getCount() - 1);
             }
 
             @Override
@@ -301,7 +224,111 @@ public class Menu_home extends Fragment {
     }
 
 
+    private void fun(){
+        linearLayout.removeAllViewsInLayout();
+        Button btn[] = new Button[placeList.size()+1];
+        btn[0] = new Button(context);
+        btn[0].setText("모두");
+        btn[0].setWidth(66);
+        btn[0].setTextSize(11);
+        btn[0].setId(0);
+        btn[0].setBackgroundResource(R.drawable.cal_button);
+        linearLayout.addView(btn[0]);
+        btn[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                SharedPreferences pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
+                String ccode = pref.getString("invitecode","");
+
+                mReference = mDatabase.getReference("room");
+                mReference.child(ccode).child("day").child(Day).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        adapter.clear();
+                        for (DataSnapshot messageData : dataSnapshot.getChildren()) {
+                            String msg2 = messageData.getValue().toString();
+                            Array.add(msg2);
+                            adapter.add(msg2);
+                        }
+                        adapter.notifyDataSetChanged();
+                        listView.setSelection(adapter.getCount() - 1);
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+            }
+        });
+
+        int i=1;
+        Log.e("size",String.valueOf(placeList.size()));
+        if(i<=placeList.size()) {
+
+            for(final String place : placeList){
+
+
+                btn[i] = new Button(context);
+                btn[i].setText(place);
+                btn[i].setWidth(66);
+                btn[i].setTextSize(11);
+                btn[i].setId(i);
+                btn[i].setBackgroundResource(R.drawable.cal_button);
+                linearLayout.addView(btn[i]);
+
+
+                btn[i].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Button btn2= (Button)view;
+                        Log.d("버튼튼","버튼 누름 : "+btn2);
+
+                        SharedPreferences pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
+                        String ccode2 = pref.getString("invitecode","");
+
+                        Log.e("e",ccode2+" "+Day);
+                        mReference = mDatabase.getReference("room");
+                        mReference.child(ccode2).child("day").child(Day).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                adapter.clear();
+                                Array.clear();
+                                for (DataSnapshot messageData : dataSnapshot.getChildren()) {
+                                    String msg2 = messageData.getValue().toString();
+
+
+                                    String[] values = msg2.split("\\s");
+
+                                    Log.e("a",values[1]);
+                                    if(values[1].equals(place)){
+                                        Array.add(msg2);
+                                        adapter.add(msg2);
+                                    }
+
+
+
+
+                                }
+                                adapter.notifyDataSetChanged();
+                                listView.setSelection(adapter.getCount() - 1);
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                    }
+                });
+                i++;
+            }
+            cnt++;
+        }
+    }
 
     private void setStringArrayPref(Context context, String key, ArrayList<String> values){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
