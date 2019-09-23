@@ -93,6 +93,8 @@
         >
 
         <TextView
+            android:layout_marginLeft="30dp"
+            android:textColor="@color/MainColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="오늘의 가사분담은 ?"

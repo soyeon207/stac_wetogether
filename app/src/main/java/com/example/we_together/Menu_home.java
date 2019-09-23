@@ -106,7 +106,7 @@ public class Menu_home extends Fragment {
         adapter2 = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_dropdown_item_1line,new ArrayList<String>());
         listView2.setAdapter(adapter2);
 
-       Log.e("weekDay",weekDay);
+        Log.e("weekDay",weekDay);
 
         switch(weekDay) {
             case "Monday": case "월요일":Day = "mon"; break;
@@ -142,29 +142,29 @@ public class Menu_home extends Fragment {
 */
 
 
-                mReference = mDatabase.getReference("room");
-                mReference.child(ccode).child("place").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        //adapter.clear();
+        mReference = mDatabase.getReference("room");
+        mReference.child(ccode).child("place").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //adapter.clear();
 
-                        placeList.clear();
+                placeList.clear();
 
-                        for (DataSnapshot messageData : dataSnapshot.getChildren()) {
-                            String msg2 = messageData.getKey();
-                            placeList.add(msg2);
-                            Log.e("msg2",msg2);
-                        }
+                for (DataSnapshot messageData : dataSnapshot.getChildren()) {
+                    String msg2 = messageData.getKey();
+                    placeList.add(msg2);
+                    Log.e("msg2",msg2);
+                }
 
-                        fun();
+                fun();
 
-                    }
+            }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+            }
+        });
 
 
 
@@ -248,8 +248,10 @@ public class Menu_home extends Fragment {
                         adapter.clear();
                         for (DataSnapshot messageData : dataSnapshot.getChildren()) {
                             String msg2 = messageData.getValue().toString();
-                            Array.add(msg2);
-                            adapter.add(msg2);
+                            String[] values = msg2.split("\\s");
+                            String v2 = values[0]+" / "+values[3]+" "+values[2];
+                            Array.add(v2);
+                            adapter.add(v2);
                         }
                         adapter.notifyDataSetChanged();
                         listView.setSelection(adapter.getCount() - 1);
@@ -304,13 +306,10 @@ public class Menu_home extends Fragment {
 
                                     Log.e("a",values[1]);
                                     if(values[1].equals(place)){
-                                        Array.add(msg2);
-                                        adapter.add(msg2);
+                                        String v2 = values[0]+" / "+values[3]+" "+values[2];
+                                        Array.add(v2);
+                                        adapter.add(v2);
                                     }
-
-
-
-
                                 }
                                 adapter.notifyDataSetChanged();
                                 listView.setSelection(adapter.getCount() - 1);

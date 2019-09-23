@@ -86,7 +86,7 @@ public class Menu_share extends Fragment implements View.OnClickListener{
                     String value = message.getValue().toString();
 
                     String[] values = value.split("\\s");
-                    adapter2.addItem(values[0],values[1],values[2]+ " "+values[3]);
+                    adapter2.addItem(values[1],values[0],values[3]+ " "+values[2]);
 
 
                 }
