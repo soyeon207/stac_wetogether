@@ -226,18 +226,28 @@ public class Menu_home extends Fragment {
 
     private void fun(){
         linearLayout.removeAllViewsInLayout();
-        Button btn[] = new Button[placeList.size()+1];
+        final Button btn[] = new Button[placeList.size()+1];
         btn[0] = new Button(context);
         btn[0].setText("모두");
         btn[0].setWidth(66);
         btn[0].setTextSize(11);
         btn[0].setId(0);
+
         btn[0].setBackgroundResource(R.drawable.cal_button);
+
         linearLayout.addView(btn[0]);
         btn[0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                btn[0].setBackgroundResource(R.drawable.radius_button);
+                for(int j=0;j<placeList.size()+1;j++){
+                    if(j==0){
+                        btn[0].setBackgroundResource(R.drawable.radius_button);
+                    }
+                    else{
+                        btn[j].setBackgroundResource(R.drawable.cal_button);
+                    }
+                }
                 SharedPreferences pref=context.getSharedPreferences("SAVE", context.MODE_PRIVATE);
                 String ccode = pref.getString("invitecode","");
 
@@ -282,9 +292,20 @@ public class Menu_home extends Fragment {
                 linearLayout.addView(btn[i]);
 
 
+                final int finalI = i;
                 btn[i].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        btn[finalI].setBackgroundResource(R.drawable.radius_button);
+                        for(int j=0;j<placeList.size()+1;j++){
+                            if(j==finalI){
+                                btn[finalI].setBackgroundResource(R.drawable.radius_button);
+                            }
+                            else{
+                                btn[j].setBackgroundResource(R.drawable.cal_button);
+                            }
+                        }
+
                         Button btn2= (Button)view;
                         Log.d("버튼튼","버튼 누름 : "+btn2);
 
