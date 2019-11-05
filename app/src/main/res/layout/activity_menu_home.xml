@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,127 +8,150 @@
     tools:context=".Menu_home">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/li"
-        android:gravity="center"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.9"
+        android:gravity="center">
 
         <TextView
-
+            android:id="@+id/today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
             android:text="TODAY"
             android:textColor="#0D0D0D"
-            android:layout_margin="15dp"
-            android:textSize="20dp"
-            android:textStyle="bold"
-
-            android:id="@+id/today"
-            />
+            android:textSize="23dp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textColor="#0D0D0D"
-            android:layout_toRightOf="@+id/today"
+            android:id="@+id/today_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:id="@+id/today_tv"
+            android:layout_toRightOf="@+id/today"
             android:text="오늘 날짜"
-            />
+            android:textColor="#0D0D0D"
+            android:textSize="23dp"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
-
     <LinearLayout
-
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/li"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent"
+        android:layout_weight="0.93"
+        android:orientation="vertical"
+        >
         <HorizontalScrollView
             android:background="#fff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
-
             <LinearLayout
-                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/linear1"
                 >
-
-
             </LinearLayout>
         </HorizontalScrollView>
+    </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.99"
+        ></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="0.55"
+        android:orientation="vertical"
+        android:background="@drawable/home_layout_radius">
 
         <LinearLayout
-            android:padding="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/home_layout_radius"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_weight="1">
+
             <TextView
-                android:layout_marginLeft="12dp"
                 android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:text="오늘 할 일"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 android:textStyle="bold"
                 android:textColor="#101010"
-                android:layout_marginTop="10dp"
                 android:textSize="15sp"
+                android:text="오늘 할 일"
                 />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.18">
+
             <ListView
                 android:id="@+id/listviewmsg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
                 android:background="#ffffff" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="20dp"
-            android:padding="5dp"
-            android:background="@drawable/home_layout_radius"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TextView
-                android:layout_marginLeft="12dp"
-                android:layout_width="match_parent"
-                android:layout_height="38dp"
-                android:textStyle="bold"
-                android:text="오늘의 이벤트"
-                android:textColor="#101010"
-                android:layout_marginTop="10dp"
-                android:textSize="15sp"
-                />
-            <ListView
-                android:id="@+id/lv2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:layout_margin="3dp"
-                android:background="#ffffff" />
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.99"></LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="0.8"
+        android:orientation="vertical"
+        android:background="@drawable/home_layout_radius">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textStyle="bold"
+                android:textColor="#101010"
+                android:textSize="15sp"
+                android:text="오늘의 이벤트"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.3"
+            >
+            <ListView
+                android:id="@+id/lv2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:background="#ffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.99"></LinearLayout>
+
+</LinearLayout>
