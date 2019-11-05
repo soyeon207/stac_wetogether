@@ -2,65 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="350dp"
+    android:layout_height="450dp"
+    android:background="@drawable/bg_dialog_radius"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".add_dialog">
 
-    <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="450dp"
-        android:orientation="vertical"
-        android:background="@drawable/bg_dialog_radius"
-        >
-
         <RelativeLayout
-            android:layout_marginTop="32dp"
+            android:background="#00000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
+            android:layout_marginTop="32dp">
+
             <TextView
-                android:textSize="17dp"
-                android:textColor="@color/MainColor"
+                android:background="#00000000"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="가사분담"
                 android:layout_centerInParent="true"
-                />
+                android:text="가사분담"
+                android:textColor="@color/MainColor"
+                android:textSize="17dp" />
+
             <ImageView
                 android:id="@+id/add_close"
-                android:layout_marginRight="32dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/close"
-                />
+                android:layout_marginRight="32dp"
+                android:src="@drawable/close" />
         </RelativeLayout>
 
         <TextView
-            android:textSize="17dp"
-            android:layout_marginTop="35dp"
-            android:layout_marginBottom="50dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="가사일정을 추가하세요 !"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="50dp"
             android:gravity="center_horizontal"
+            android:text="가사일정을 추가하세요 !"
             android:textColor="@color/MainColor"
-            />
+            android:textSize="17dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            >
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/spinner"
@@ -78,126 +70,123 @@
             </LinearLayout>
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-            <EditText
-                android:id="@+id/d_time"
-                android:layout_width="70dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/d_time"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:hint="시간"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
+
+                <EditText
+                    android:id="@+id/d_do"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:hint="할일"
+                    android:textAlignment="center"
+                    android:textSize="15dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/ch1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:button="@drawable/checkbox_custom"
                 android:textAlignment="center"
-                android:textSize="15dp"
-                android:hint="시간"
+                android:textColor="@color/MainColor" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+
                 />
 
-            <EditText
-                android:id="@+id/d_do"
-                android:layout_width="150dp"
+            <CheckBox
+                android:id="@+id/ch2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+                android:text="@string/tue"
                 android:textAlignment="center"
-                android:textSize="15dp"
-                android:hint="할일"
-                />
+                android:textColor="@color/MainColor" />
+
+            <CheckBox
+                android:id="@+id/ch3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+                android:text="@string/wed"
+                android:textAlignment="center"
+                android:textColor="@color/MainColor" />
+
+            <CheckBox
+                android:id="@+id/ch4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+                android:text="@string/thu"
+                android:textAlignment="center"
+                android:textColor="@color/MainColor" />
+
+            <CheckBox
+                android:id="@+id/ch5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+                android:text="@string/fri"
+                android:textAlignment="center"
+                android:textColor="@color/MainColor" />
+
+            <CheckBox
+                android:id="@+id/ch6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+                android:text="@string/sat"
+                android:textAlignment="center"
+                android:textColor="@color/MainColor" />
+
+            <CheckBox
+                android:id="@+id/ch7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+                android:text="@string/sun"
+                android:textAlignment="center"
+                android:textColor="@color/MainColor" />
+
         </LinearLayout>
-        </LinearLayout>
-       <LinearLayout
-           android:layout_marginTop="40dp"
-           android:layout_width="wrap_content"
-           android:layout_gravity="center"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           >
-
-           <CheckBox
-               android:id="@+id/ch1"
-               android:textColor="@color/MainColor"
-               android:button="@null"
-               android:textAlignment="center"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="@string/mon"
-               />
-
-           <CheckBox
-               android:id="@+id/ch2"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:button="@null"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
-               android:text="@string/tue"
-               android:textAlignment="center"
-               android:textColor="@color/MainColor" />
-
-           <CheckBox
-               android:id="@+id/ch3"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:button="@null"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
-               android:text="@string/wed"
-               android:textAlignment="center"
-               android:textColor="@color/MainColor" />
-
-           <CheckBox
-               android:id="@+id/ch4"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:button="@null"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
-               android:text="@string/thu"
-               android:textAlignment="center"
-               android:textColor="@color/MainColor" />
-
-           <CheckBox
-               android:id="@+id/ch5"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:button="@null"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
-               android:text="@string/fri"
-               android:textAlignment="center"
-               android:textColor="@color/MainColor" />
-
-           <CheckBox
-               android:id="@+id/ch6"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:button="@null"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
-               android:text="@string/sat"
-               android:textAlignment="center"
-               android:textColor="@color/MainColor" />
-
-           <CheckBox
-               android:id="@+id/ch7"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:button="@null"
-               android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
-               android:text="@string/sun"
-               android:textAlignment="center"
-               android:textColor="@color/MainColor" />
-
-       </LinearLayout>
 
         <Button
+            android:id="@+id/add_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="48dp"
-            android:layout_marginBottom="5dp"
-            android:text="추가하기"
-            android:textSize="15dp"
-            android:id="@+id/add_btn"
-            android:textColor="#A3A2A2"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/radius_button"
-            />
-
-    </LinearLayout>
+            android:text="추가하기"
+            android:textColor="#A3A2A2"
+            android:textSize="15dp" />
 </LinearLayout>
