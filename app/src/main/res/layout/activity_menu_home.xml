@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     android:orientation="vertical"
     tools:context=".Menu_home">
 
@@ -21,8 +22,7 @@
             android:layout_marginRight="15dp"
             android:text="TODAY"
             android:textColor="#0D0D0D"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+            android:textSize="23dp" />
 
         <TextView
             android:id="@+id/today_tv"
@@ -31,8 +31,7 @@
             android:layout_toRightOf="@+id/today"
             android:text="오늘 날짜"
             android:textColor="#0D0D0D"
-            android:textSize="23dp"
-            android:textStyle="bold" />
+            android:textSize="23dp" />
 
     </LinearLayout>
 
@@ -40,27 +39,25 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0.93"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <HorizontalScrollView
-            android:background="#fff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#fff">
+
             <LinearLayout
+                android:id="@+id/linear1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:id="@+id/linear1"
-                >
-            </LinearLayout>
+                android:orientation="horizontal"></LinearLayout>
         </HorizontalScrollView>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.99"
-        ></LinearLayout>
+        android:layout_weight="0.99"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -68,8 +65,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_weight="0.55"
-        android:orientation="vertical"
-        android:background="@drawable/home_layout_radius">
+        android:background="@drawable/home_layout_radius"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -81,21 +78,21 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="#101010"
-                android:textSize="15sp"
                 android:text="오늘 할 일"
-                />
+                android:textColor="#101010"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.18">
+            android:layout_weight="0.2">
 
             <ListView
+                android:dividerHeight="0dp"
+                android:divider="@null"
                 android:id="@+id/listviewmsg"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="3dp"
                 android:background="#ffffff" />
@@ -115,32 +112,32 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_weight="0.8"
-        android:orientation="vertical"
-        android:background="@drawable/home_layout_radius">
+        android:background="@drawable/home_layout_radius"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+            android:layout_weight="1">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:textStyle="bold"
-                android:textColor="#101010"
-                android:textSize="15sp"
                 android:text="오늘의 이벤트"
-                />
+                android:textColor="#101010"
+                android:textSize="18sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            >
+            android:layout_weight="0.33">
+
             <ListView
+                android:dividerHeight="0dp"
+                android:divider="@null"
                 android:id="@+id/lv2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
