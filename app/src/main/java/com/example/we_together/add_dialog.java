@@ -3,6 +3,7 @@ package com.example.we_together;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 
 public class add_dialog extends Dialog {
 
@@ -38,7 +43,8 @@ public class add_dialog extends Dialog {
     private Spinner spinner,p_spinner;
     private CheckBox ch1,ch2,ch3,ch4,ch5,ch6,ch7;
     private EditText d_time,d_do;
-
+    private String CHANNEL_ID = "1";
+    String str;
     SharedPreferences preferences;
 
     FirebaseDatabase mdatabase = FirebaseDatabase.getInstance();
@@ -133,6 +139,7 @@ public class add_dialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        createNotificationChannel();
 
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
@@ -179,6 +186,9 @@ public class add_dialog extends Dialog {
                     check(ch5,"fri",value); check(ch6,"sat",value); check(ch7,"sun",value);
 
                     Toast.makeText(getContext(),"값이 정상적으로 입력되었습니다",Toast.LENGTH_LONG).show();
+
+
+
                 }
 
             }
@@ -191,10 +201,41 @@ public class add_dialog extends Dialog {
         if(ch.isChecked()){
 
             mdatabaseRef.child("room").child(s.getString("invitecode","")).child("day").child(day).push().setValue(val);
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
+                    .setSmallIcon(R.drawable.logo)
+                    .setContentTitle("님이 <"+ val + "> 일정을 추가했습니다!")
+                    .setContentText(val)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            //System.out.println("알람이 울려야 하는데");
 
+
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+
+            notificationManager.notify(1, builder.build());
 
 
         }
     }
+
+    private void createNotificationChannel(){
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "우리-함께";
+            String description = "일정이 수정되었습니다!";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            Context context;
+            context = getContext();
+            NotificationManager notificationManager = getContext().getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 
 }
