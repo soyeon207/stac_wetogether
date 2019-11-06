@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -200,10 +201,12 @@ public class add_dialog extends Dialog {
     public void check(CheckBox ch,String day,String val){
         if(ch.isChecked()){
 
+
+
             mdatabaseRef.child("room").child(s.getString("invitecode","")).child("day").child(day).push().setValue(val);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
                     .setSmallIcon(R.drawable.logo)
-                    .setContentTitle("님이 <"+ val + "> 일정을 추가했습니다!")
+                    .setContentTitle(s.getString("name","")+"님이 <"+ val + "> 일정을 추가했습니다!")
                     .setContentText(val)
                     .setPriority(NotificationCompat.PRIORITY_DEFAULT);
             //System.out.println("알람이 울려야 하는데");
