@@ -29,8 +29,6 @@ import com.squareup.picasso.Picasso;
 
 public class UploadMain extends AppCompatActivity {
 
-
-
     private static final int PICK_IMAGE_REQUEST = 1;
 
     private Button mButtonChooseImage;
@@ -71,7 +69,7 @@ public class UploadMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (mUploadTask != null && mUploadTask.isInProgress()) {
-                    Toast.makeText(UploadMain.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadMain.this, "사진이 올라가고 있습니다", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadFile();
                 }
@@ -122,7 +120,7 @@ public class UploadMain extends AppCompatActivity {
                                 }
                             }, 500);
 
-                            Toast.makeText(UploadMain.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(UploadMain.this, "사진 등록이 완료 되었습니다", Toast.LENGTH_LONG).show();
                             Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),
                                     taskSnapshot.getDownloadUrl().toString());
                             String uploadId = mDatabaseRef.push().getKey();
@@ -146,7 +144,7 @@ public class UploadMain extends AppCompatActivity {
                         }
                     });
         } else {
-            Toast.makeText(this, "No file selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "파일을 선택해주세요", Toast.LENGTH_SHORT).show();
         }
     }
 

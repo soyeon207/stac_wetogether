@@ -12,11 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <TextView
+        android:background="@color/MainColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="파일 업로드"
         android:textStyle="bold"
         android:textSize="20dp"
+        android:textColor="@color/w"
         android:gravity="center"
         android:id="@+id/top"
         android:padding="10dp"
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:background="#ffffff"
         android:textStyle="bold"
+        android:textColor="@color/MainColor"
         android:text="사진 선택" />
 
     <EditText
@@ -54,12 +57,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/button_upload"
-
+        android:progressTint="@color/MainColor"
         android:layout_marginBottom="16dp"
         android:layout_alignParentLeft="true" />
 
 
     <Button
+        android:textColor="@color/MainColor"
         android:id="@+id/button_upload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -67,7 +71,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="15dp"
         android:textStyle="bold"
-        android:background="#ffffff"
-        android:text="Upload" />
+        android:background="@color/w"
+        android:text="사진 올리기" />
     </RelativeLayout>
 </LinearLayout>
