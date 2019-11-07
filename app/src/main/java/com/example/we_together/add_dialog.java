@@ -186,9 +186,7 @@ public class add_dialog extends Dialog {
                     check(ch1,"mon",value); check(ch2,"tue",value); check(ch3,"wed",value); check(ch4,"thu",value);
                     check(ch5,"fri",value); check(ch6,"sat",value); check(ch7,"sun",value);
 
-                    Toast.makeText(getContext(),"값이 정상적으로 입력되었습니다",Toast.LENGTH_LONG).show();
-
-
+                    Toast.makeText(getContext(),"가사가 정상적으로 추가되었습니다",Toast.LENGTH_LONG).show();
 
                 }
 
@@ -200,8 +198,6 @@ public class add_dialog extends Dialog {
 
     public void check(CheckBox ch,String day,String val){
         if(ch.isChecked()){
-
-
 
             mdatabaseRef.child("room").child(s.getString("invitecode","")).child("day").child(day).push().setValue(val);
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getContext(), CHANNEL_ID)
