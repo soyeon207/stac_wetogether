@@ -86,7 +86,6 @@ public class Menu_calendar extends Fragment {
             @Override
             public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
 
-
                 text_cal.setText(String.valueOf((date.getMonth()+1)+"월 "+date.getDay()+"일 "+"가족 이벤트"));
 
                 month = String.valueOf((date.getMonth()+1));
@@ -167,8 +166,8 @@ public class Menu_calendar extends Fragment {
             final ArrayList<CalendarDay> dates = new ArrayList<>();
 
             for(int ed=0;ed<event_arr.size();ed++) {
-
-                final CalendarDay day = CalendarDay.from(2019,Integer.parseInt(event_arr.get(ed).substring(0,1))-1,Integer.parseInt(event_arr.get(ed).substring(1)));
+                Log.e("a",event_arr.get(ed).substring(0,1)+" "+event_arr.get(ed).substring(1));
+                final CalendarDay day = CalendarDay.from(2019,Integer.parseInt(event_arr.get(ed).substring(0,2))-1,Integer.parseInt(event_arr.get(ed).substring(2)));
                 dates.add(day);
             }
 
