@@ -82,7 +82,7 @@ public class Menu_home extends Fragment {
         tv.setText(getTime);
 
         SimpleDateFormat s1 = new SimpleDateFormat("M");
-        SimpleDateFormat s2 = new SimpleDateFormat("dd");
+        SimpleDateFormat s2 = new SimpleDateFormat("d");
         String a1 = s1.format(date);
         String a2 = s2.format(date);
 
