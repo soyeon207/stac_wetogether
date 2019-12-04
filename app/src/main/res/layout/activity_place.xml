@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".placeActivity">
@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="0dp"
         >
 
         <LinearLayout
@@ -60,20 +60,23 @@
 
 
     <ScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:layout_weight="8"
-            android:paddingBottom="-5dp"
-            android:paddingTop="-5dp"
+
             android:background="@drawable/home_layout_radius"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="30dp">
+            android:padding="30dp"
+            android:paddingTop="-5dp"
+            android:paddingBottom="-5dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -130,7 +133,6 @@
                 android:text="방2" />
 
 
-
             <!--    <android.support.design.chip.ChipGroup
                 android:id="@+id/chip_group"
                 android:layout_width="match_parent"
@@ -171,13 +173,13 @@
         android:layout_marginRight="20dp"
         android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp">
         <Button
             android:background="@drawable/background_gradient2"
             android:id="@+id/goStart"
             android:textColor="#ffffff"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
 
             android:text="시작하기"
 
